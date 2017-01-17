@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+<div class="container-fluid  full-width">
+    <div class="row navbar-fixed-top header">
+        Header will be there
+    </div>
+    <div class="row content">
+        @RenderBody()
+    </div>
+    <div class="row navbar-fixed-bottom footer">
+        <div class="row footer-content"></div>
+        <div class="row copyright">
+            Copyright
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>
