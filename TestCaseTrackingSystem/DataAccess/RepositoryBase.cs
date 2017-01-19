@@ -7,10 +7,7 @@ namespace DataAccess
     {
         public IQueryable<T> GetAll()
         {
-            using (var context = new TestCaseDataContext())
-            {
-                context.
-            }
+            throw new NotImplementedException();
         }
 
         public IQueryable<T> GetById(int id)
