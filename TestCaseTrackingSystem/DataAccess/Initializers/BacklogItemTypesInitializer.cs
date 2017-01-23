@@ -3,9 +3,9 @@ using DataAccess.Entities;
 
 namespace DataAccess.Initializers
 {
-    internal class BacklogItemTypesInitializer : IEntityInitializer
+    internal class BacklogItemTypesInitializer : EntityInitializerBase<BacklogItemType>
     {
-        private static readonly IEnumerable<BacklogItemType> BuiltInTypes = new[]
+        protected override IEnumerable<BacklogItemType> BuiltInEntities => new[]
         {
             new BacklogItemType
             {
@@ -18,12 +18,5 @@ namespace DataAccess.Initializers
                 Type = "Story"
             }
         };
-
-        public void Initialize(TestCaseDataContext dbContext)
-        {
-            dbContext.BacklogItemTypes.AddRange(BuiltInTypes);
-
-            dbContext.SaveChanges();
-        }
     }
 }
