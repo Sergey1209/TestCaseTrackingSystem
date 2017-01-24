@@ -28,6 +28,7 @@ namespace DataAccess.Entities
 
         public int? AssignedToID { get; set; }
 
+
         [ForeignKey(nameof(TypeID))]
         public BacklogItemType Type { get; set; }
 

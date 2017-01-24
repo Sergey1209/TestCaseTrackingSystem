@@ -40,11 +40,11 @@ namespace DataAccess.Entities
         [ForeignKey(nameof(RoleID))]
         public UserRole Role { get; set; }
         
-        public ICollection<BacklogItem> AssignedBacklogItems { get; set; }
+        public ICollection<BacklogItem> BacklogItems { get; set; }
 
         public User()
         {
-            AssignedBacklogItems = new List<BacklogItem>();
+            BacklogItems = new List<BacklogItem>();
         }
     }
 }
