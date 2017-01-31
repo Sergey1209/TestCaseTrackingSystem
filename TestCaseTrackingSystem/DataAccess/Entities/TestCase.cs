@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DataAccess.Initializers;
 
 namespace DataAccess.Entities
 {
+    [Initializer(typeof(TestCaseInitializer))]
     public class TestCase
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

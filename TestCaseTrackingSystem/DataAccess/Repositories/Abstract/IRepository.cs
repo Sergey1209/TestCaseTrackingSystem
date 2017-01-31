@@ -7,7 +7,7 @@ namespace DataAccess.Repositories.Abstract
     public interface IRepository<TEntity> where TEntity : class
     {
         TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(params Expression<Func<TEntity, bool>>[] includeExpressions);
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
         void Add(TEntity entity);

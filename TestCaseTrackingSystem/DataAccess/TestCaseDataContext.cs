@@ -8,7 +8,7 @@ namespace DataAccess
     {
         static TestCaseDataContext()
         {
-            Database.SetInitializer(new TestCaseDataContextInitializer());
+            Database.SetInitializer(TestCaseDataContextInitializer.Instance);
         }
 
         public TestCaseDataContext() : base("TestCaseTrackingSystem")
@@ -24,6 +24,8 @@ namespace DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            TestCaseDataContextInitializer.Instance.InitializeModels(modelBuilder);
+
             // Need to specify reletionships here because EF cannot do this automatically because of property naming
             modelBuilder.Entity<User>()
                 .HasMany(t => t.BacklogItems)

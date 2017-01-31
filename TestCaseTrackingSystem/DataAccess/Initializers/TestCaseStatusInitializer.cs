@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using DataAccess.Entities;
 
 namespace DataAccess.Initializers
 {
-    public class TestCaseStatusInitializer : EntityInitializerBase<TestCaseStatus>
+    internal class TestCaseStatusInitializer : EntityInitializerBase<TestCaseStatus>
     {
         protected override IEnumerable<TestCaseStatus> BuiltInEntities => new[]
         {
@@ -26,7 +27,13 @@ namespace DataAccess.Initializers
             {
                 ID = 4,
                 Name = "Passed"
-            }, 
+            }
         };
+
+        public override void InitializeModel(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TestCaseStatus>().HasKey(t => t.ID).Property(t => t.ID).IsRequired();
+            modelBuilder.Entity<TestCaseStatus>().Property(t => t.Name).IsRequired();
+        }
     }
 }

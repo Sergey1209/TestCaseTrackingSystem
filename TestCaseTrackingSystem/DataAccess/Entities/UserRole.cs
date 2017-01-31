@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using DataAccess.Initializers;
 
 namespace DataAccess.Entities
 {
+    [Initializer(typeof(UserRolesInitializer))]
     public class UserRole
     {
         [Key]
@@ -11,6 +13,6 @@ namespace DataAccess.Entities
         [Required]
         public string Role { get; set; }
 
-        public IQueryable<User> Users { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

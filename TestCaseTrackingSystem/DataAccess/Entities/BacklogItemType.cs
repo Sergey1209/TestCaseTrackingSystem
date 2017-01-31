@@ -1,13 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DataAccess.Initializers;
 
 namespace DataAccess.Entities
 {
+    [Initializer(typeof(BacklogItemTypeInitializer))]
     public class BacklogItemType
     {
-        [Key]
         public int ID { get; set; }
-
-        [Required]
+        
         public string Type { get; set; }
     }
 }

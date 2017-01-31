@@ -9,6 +9,5 @@ namespace DataAccess.Repositories.Abstract
     {
         IEnumerable<TestCase> GetAllBacklogItemTestCases(int backlogItemId);
         IEnumerable<TestCase> GetBacklogItemTestCases(int backlogItemId, Expression<Func<TestCase, bool>> predicate);
-        IEnumerable<TestCase> GetAllTestCasesAssignedToUser(int userId);
     }
 }
