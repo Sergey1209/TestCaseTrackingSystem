@@ -1,0 +1,30 @@
+﻿@model TestCaseStorage.Models.Shared.NavigationMenuModel
+    
+@{
+    Layout = null;
+}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="row navigation-row">
+            <div class="col-lg-1 home-btn-container">
+                @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-default navbar-btn btn-lg" })
+            </div>
+            <div class="col-lg-2 action-btn-container">
+                @Html.ActionLink("Iterations", "List", "Iterations", null, new {@class = "btn btn-default navbar-btn btn-lg"})
+            </div>
+            <div class="col-lg-2 action-btn-container">
+                @Html.ActionLink("Backlog", "List", "Iterations", null, new {@class = "btn btn-default navbar-btn btn-lg"})
+            </div>
+            <div class="col-lg-2 action-btn-container">
+                @Html.ActionLink("Test Cases", "List", "Iterations", null, new {@class = "btn btn-default navbar-btn btn-lg"})
+            </div>
+            <div class="col-lg-2 action-btn-container">
+                @Html.ActionLink("Users", "List", "Iterations", null, new {@class = "btn btn-default navbar-btn btn-lg"})
+            </div>
+            <div class="col-lg-3 sign-in-btn-container">
+                @Html.ActionLink("Sign-in", "List", "Iterations", null, new {@class = "btn btn-default navbar-btn btn-lg"})
+            </div>
+        </div>
+    </div>
+</nav>

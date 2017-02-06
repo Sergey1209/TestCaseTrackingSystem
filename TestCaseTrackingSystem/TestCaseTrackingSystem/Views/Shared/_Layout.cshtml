@@ -8,8 +8,8 @@
 <body>
 
 <div class="container-fluid  full-width">
-    <div class="row navbar-fixed-top header">
-        Header will be there
+    <div class="row header">
+        @{ Html.RenderAction("Show", "NavigationMenu"); }
     </div>
     <div class="row content">
         @RenderBody()
