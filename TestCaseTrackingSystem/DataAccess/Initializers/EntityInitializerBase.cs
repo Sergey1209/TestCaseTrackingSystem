@@ -10,7 +10,7 @@ namespace DataAccess.Initializers
 
         private bool _isInitialized;
 
-        public virtual void InitializeData(TestCaseDataContext dbContext)
+        public virtual void InitializeData(TCTSDataContext dbContext)
         {
             if (_isInitialized) return;
 

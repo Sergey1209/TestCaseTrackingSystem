@@ -1,0 +1,15 @@
+﻿@using TestCaseStorage.Models.Shared
+@model TestCaseStorage.Models.Users.User
+
+@{
+    ViewBag.Title = "Profile: " + Model.Login;
+}
+
+@{
+    Html.RenderPartial("_infoLine", new InfoLineModel("Login", Model.Login));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Role", Model.Role.ToString()));
+    Html.RenderPartial("_infoLine", new InfoLineModel("First Name", Model.FirstName));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Last Name", Model.LastName));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Email", Model.Email));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Date Created", Model.DateCreated.ToString()));
+}

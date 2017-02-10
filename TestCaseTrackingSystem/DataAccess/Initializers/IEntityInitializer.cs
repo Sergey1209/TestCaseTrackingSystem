@@ -4,7 +4,7 @@ namespace DataAccess.Initializers
 {
     internal interface IEntityInitializer
     {
-        void InitializeData(TestCaseDataContext dbContext);
+        void InitializeData(TCTSDataContext dbContext);
 
         void InitializeModel(DbModelBuilder modelBuilder);
     }

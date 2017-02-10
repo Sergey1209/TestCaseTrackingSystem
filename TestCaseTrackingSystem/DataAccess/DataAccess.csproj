@@ -51,30 +51,38 @@
   <ItemGroup>
     <Compile Include="Entities\BacklogItem.cs" />
     <Compile Include="Entities\BacklogItemType.cs" />
+    <Compile Include="Entities\BacklogItemTypeEnum.cs" />
     <Compile Include="Entities\Iteration.cs" />
     <Compile Include="Entities\TestCase.cs" />
     <Compile Include="Entities\TestCaseStatus.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />
+    <Compile Include="Entities\UserRoleEnum.cs" />
     <Compile Include="Initializers\BacklogItemInitializer.cs" />
     <Compile Include="Initializers\BacklogItemTypeInitializer.cs" />
     <Compile Include="Initializers\EntityInitializerBase.cs" />
     <Compile Include="Initializers\IEntityInitializer.cs" />
     <Compile Include="Initializers\InitializerAttribute.cs" />
     <Compile Include="Initializers\IterationInitializer.cs" />
-    <Compile Include="Initializers\TestCaseDataContextInitializer.cs" />
+    <Compile Include="Initializers\TCTSDataContextInitializer.cs" />
     <Compile Include="Initializers\TestCaseInitializer.cs" />
     <Compile Include="Initializers\TestCaseStatusInitializer.cs" />
     <Compile Include="Initializers\UserInitializer.cs" />
     <Compile Include="Initializers\UserRolesInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Abstract\IBacklogItemRepository.cs" />
+    <Compile Include="Repositories\Abstract\IIterationRepository.cs" />
     <Compile Include="Repositories\Abstract\IRepository.cs" />
     <Compile Include="Repositories\Abstract\ITestCaseRepository.cs" />
-    <Compile Include="Repositories\Abstract\IUnitOfWork.cs" />
+    <Compile Include="Repositories\Abstract\ITCTSUnitOfWork.cs" />
+    <Compile Include="Repositories\Abstract\IUserRepository.cs" />
+    <Compile Include="Repositories\Implementation\BacklogItemRepository.cs" />
+    <Compile Include="Repositories\Implementation\IterationRepository.cs" />
     <Compile Include="Repositories\Implementation\RepositoryBase.cs" />
     <Compile Include="Repositories\Implementation\TestCasesRepository.cs" />
-    <Compile Include="Repositories\Implementation\UnitOfWork.cs" />
-    <Compile Include="TestCaseDataContext.cs" />
+    <Compile Include="Repositories\Implementation\TCTSUnitOfWork.cs" />
+    <Compile Include="Repositories\Implementation\UserRepository.cs" />
+    <Compile Include="TCTSDataContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\CreateDatabaseScript.sql" />

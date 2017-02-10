@@ -1,4 +1,59 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using TestCaseStorage.Models.Iterations
+@model IEnumerable<Iteration>
+
+@{
+    ViewBag.Title = "All Iterations";
 }
+
+@section AdminTools
+{
+    @Html.ActionLink("Add", "Add", "Iterations", null, new { @class = "btn btn-success btn-md" })
+}
+
+@if (Model.Any())
+{
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th></th>
+        </tr>
+        @foreach (var iteration in Model)
+        {
+            <tr>
+                <td>@iteration.ID</td>
+                <td>@iteration.Name</td>
+                <td>@iteration.StartDate</td>
+                <td>@iteration.EndDate</td>
+                <td>
+                    <div class="col-lg-6 text-right">
+                        @using (Html.BeginForm("Edit", "Iterations", FormMethod.Get))
+                        {
+                            @Html.Hidden("iterationId", iteration.ID)
+
+                            <input class="btn btn-default btn-md" type="submit" value="Edit"/>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @using (Html.BeginForm("Delete", "Iterations", FormMethod.Post))
+                        {
+                            @Html.Hidden("iterationId", iteration.ID)
+
+                            <input class="btn btn-default btn-md" type="submit" value="Delete"/>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="row color-main no-items-message text-center">
+        There is no iterations here. Please ask your Admin to create one.
+    </div>
+}
+
 

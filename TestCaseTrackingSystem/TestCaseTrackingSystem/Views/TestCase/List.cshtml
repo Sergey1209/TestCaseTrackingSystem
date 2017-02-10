@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TestCaseStorage.Models.TestCases.TestCase>
+
+@{
+    ViewBag.Title = "All Test Cases";
+}
+
+@section AdminTools
+{
+    @Html.ActionLink("Add", "Add", "TestCase", null, new { @class = "btn btn-success btn-md" })
+}
+
+@if (Model.Any())
+{
+    
+}
+else
+{
+    <div class="row color-main no-items-message text-center">
+        There is no test cases here. Please ask your Admin to create one.
+    </div>
+}

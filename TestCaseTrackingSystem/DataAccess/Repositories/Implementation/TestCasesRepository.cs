@@ -16,16 +16,16 @@ namespace DataAccess.Repositories.Implementation
 
         public IEnumerable<TestCase> GetAllBacklogItemTestCases(int backlogItemId)
         {
-            return TestCaseDataContext.TestCases
+            return TctsDataContext.TestCases
                 .Include(t => t.Status)
                 .Where(t => t.BacklogItemID == backlogItemId);
         }
 
         public IEnumerable<TestCase> GetBacklogItemTestCases(int backlogItemId, Expression<Func<TestCase, bool>> predicate)
         {
-            return TestCaseDataContext.TestCases.Where(t => t.BacklogItemID == backlogItemId).Where(predicate);
+            return TctsDataContext.TestCases.Where(t => t.BacklogItemID == backlogItemId).Where(predicate);
         }
 
-        private TestCaseDataContext TestCaseDataContext => (TestCaseDataContext)Context;
+        private TCTSDataContext TctsDataContext => (TCTSDataContext)Context;
     }
 }

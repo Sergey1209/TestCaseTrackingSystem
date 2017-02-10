@@ -25,10 +25,10 @@ namespace DataAccess.Initializers
             } 
         };
 
-        public override void InitializeData(TestCaseDataContext dbContext)
+        public override void InitializeData(TCTSDataContext dbContext)
         {
             // User roles need to be initialized prior to adding new user
-            TestCaseDataContextInitializer.Instance[typeof(UserRolesInitializer)].InitializeData(dbContext);
+            TCTSDataContextInitializer.Instance[typeof(UserRolesInitializer)].InitializeData(dbContext);
 
             base.InitializeData(dbContext);
         }

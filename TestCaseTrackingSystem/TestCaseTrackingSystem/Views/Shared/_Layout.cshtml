@@ -7,22 +7,32 @@
 </head>
 <body>
 
-<div class="container-fluid  full-width">
+<div class="container-fluid full-width full-height">
     <div class="row header">
-        @{ Html.RenderAction("Show", "NavigationMenu"); }
+        @if (User.Identity.IsAuthenticated)
+        {
+            Html.RenderPartial("_header");
+        }
     </div>
     <div class="row content">
-        @RenderBody()
-    </div>
-    <div class="row navbar-fixed-bottom footer">
-        <div class="row footer-content"></div>
-        <div class="row copyright">
-            Copyright
+        <div class="container-fluid full-height">
+            <div class="panel panel-default full-height body-panel">
+                <div class="panel-heading body-title color-main">
+                    <div class="row">
+                        <div class="col-lg-6">@ViewBag.Title</div>
+                        <div class="col-lg-6 text-right">@RenderSection("AdminTools", false)</div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap")
 @RenderSection("scripts", required: false)
 </body>

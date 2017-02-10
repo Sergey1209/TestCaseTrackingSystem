@@ -8,7 +8,7 @@ namespace TestDataAccess
     {
         static void Main(string[] args)
         {
-            using (var unitOfWork = new UnitOfWork(new TestCaseDataContext()))
+            using (var unitOfWork = new TCTSUnitOfWork(new TCTSDataContext()))
             {
                 var testCases = unitOfWork.TestCaseRepository.GetAllBacklogItemTestCases(1);
 

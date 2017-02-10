@@ -6,13 +6,13 @@ using System.Reflection;
 
 namespace DataAccess.Initializers
 {
-    internal class TestCaseDataContextInitializer : CreateDatabaseIfNotExists<TestCaseDataContext>
+    internal class TCTSDataContextInitializer : CreateDatabaseIfNotExists<TCTSDataContext>
     {
         private static readonly List<IEntityInitializer> EntityInitializers = new List<IEntityInitializer>();
 
-        static TestCaseDataContextInitializer()
+        static TCTSDataContextInitializer()
         {
-            Assembly currentAssembly = Assembly.GetAssembly(typeof(TestCaseDataContextInitializer));
+            Assembly currentAssembly = Assembly.GetAssembly(typeof(TCTSDataContextInitializer));
 
             var entities = currentAssembly.GetTypes().Where(t => Attribute.IsDefined(t, typeof(InitializerAttribute)));
 
@@ -25,9 +25,9 @@ namespace DataAccess.Initializers
             }
         }
 
-        private TestCaseDataContextInitializer() { }
+        private TCTSDataContextInitializer() { }
 
-        protected override void Seed(TestCaseDataContext context)
+        protected override void Seed(TCTSDataContext context)
         {
             base.Seed(context);
 
@@ -39,7 +39,7 @@ namespace DataAccess.Initializers
             EntityInitializers.ForEach(t => t.InitializeModel(modelBuilder));
         }
         
-        public static TestCaseDataContextInitializer Instance = new TestCaseDataContextInitializer();
+        public static TCTSDataContextInitializer Instance = new TCTSDataContextInitializer();
 
         internal IEntityInitializer this[Type type]
         {

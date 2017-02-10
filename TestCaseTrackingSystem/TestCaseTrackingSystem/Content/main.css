@@ -14,12 +14,17 @@
     margin-right: 0;
 }
 
-.full-width {
-    height: 100%;
+.header {
+    /*height: 100px;*/
 }
 
-.header {
-    height: 100px;
+.div-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.full-height {
+    height: 100%;
 }
 
 .navigation-row .action-btn-container {
@@ -30,30 +35,35 @@
     width: 100%;
 }
 
-.navigation-row .sign-in-btn-container {
-    text-align: right;
-}
-
-
 .content {
     height: 100%;
+    margin-top: -100px;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-
-
-
-.footer {
-    height: 100px;
+.no-padding {
+    padding: 0 !important;
 }
 
-.footer .footer-content {
-    height: 60px;
+.color-main {
+    color: #008080;
 }
 
-.footer .copyright {
-    padding: 10px 0;
-    height: 40px;
-    text-align: center;
-    font-size: 12px;
+.no-items-message {
+    font-size: 20px;
 }
 
+.content .body-title {
+    font-size: 30px;
+}
+
+.content .body-panel {
+    margin-bottom: -50px;
+}
+
+.ok-cancel-btn-width {
+    width: 180px;
+}

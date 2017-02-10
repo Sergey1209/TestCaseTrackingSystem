@@ -4,14 +4,14 @@ using DataAccess.Initializers;
 
 namespace DataAccess
 {
-    public class TestCaseDataContext : DbContext
+    public class TCTSDataContext : DbContext
     {
-        static TestCaseDataContext()
+        static TCTSDataContext()
         {
-            Database.SetInitializer(TestCaseDataContextInitializer.Instance);
+            Database.SetInitializer(TCTSDataContextInitializer.Instance);
         }
 
-        public TestCaseDataContext() : base("TestCaseTrackingSystem")
+        public TCTSDataContext() : base("TestCaseTrackingSystem")
         { }
 
         public DbSet<BacklogItem> BacklogItems { get; set; }
@@ -24,7 +24,7 @@ namespace DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            TestCaseDataContextInitializer.Instance.InitializeModels(modelBuilder);
+            TCTSDataContextInitializer.Instance.InitializeModels(modelBuilder);
 
             // Need to specify reletionships here because EF cannot do this automatically because of property naming
             modelBuilder.Entity<User>()

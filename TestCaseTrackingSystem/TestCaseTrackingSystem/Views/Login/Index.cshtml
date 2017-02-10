@@ -1,0 +1,33 @@
+﻿@model TestCaseStorage.Models.Login.LoginModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Welcome!!! Please Sign-in to enjoy";
+}
+
+<div>
+    <div style="text-align: center; margin-top: 250px; font-size: 40px; color: #008080">
+        Test Case Tracking System
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 input-group-lg">
+                @Html.TextBoxFor(t => t.Login, new {@class = "form-control navbar-btn", placeholder = "Login"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 input-group-lg">
+                @Html.PasswordFor(t => t.Password, new {@class = "form-control navbar-btn", placeholder = "Password"})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
+                <input class="btn btn-default navbar-btn btn-lg" type="submit" value="Login"/>
+            </div>
+        </div>
+    </div>
+}

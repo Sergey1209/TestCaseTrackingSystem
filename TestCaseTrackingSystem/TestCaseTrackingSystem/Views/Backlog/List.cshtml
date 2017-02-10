@@ -1,0 +1,66 @@
+﻿@using TestCaseStorage.Models.BacklogItems
+@model IEnumerable<BacklogItemViewModel>
+
+@{
+    ViewBag.Title = "All Backlog Items";
+}
+
+@section AdminTools
+{
+    @Html.ActionLink("Add", "Add", "Backlog", null, new { @class = "btn btn-success btn-md" })
+}
+ 
+@if (Model.Any())
+{
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Iteration</th>
+            <th>Assigned To</th>
+            <th>User Created</th>
+            <th>Date Created</th>
+            <th></th>
+        </tr>
+        @foreach (var backlogItem in Model)
+        {
+            <tr>
+                <td>@backlogItem.ID</td>
+                <td>@backlogItem.Title</td>
+                <td>@backlogItem.Description</td>
+                <td>@backlogItem.Type</td>
+                <td>@backlogItem.BelongsToIteration</td>
+                <td>@backlogItem.AssignedToUser</td>
+                <td>@backlogItem.UserCreated</td>
+                <td>@backlogItem.DateCreated</td>
+                <td>
+                    <div class="col-lg-6 text-right">
+                        @using (Html.BeginForm("Edit", "Backlog", FormMethod.Get))
+                        {
+                            @Html.Hidden("id", backlogItem.ID)
+
+                            <input class="btn btn-default btn-md" type="submit" value="Edit" />
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @using (Html.BeginForm("Delete", "Backlog", FormMethod.Post))
+                        {
+                            @Html.Hidden("id", backlogItem.ID)
+
+                            <input class="btn btn-default btn-md" type="submit" value="Delete" />
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="row color-main no-items-message text-center">
+        There is no backlog items here. Please ask your Admin to create one.
+    </div>
+}
+

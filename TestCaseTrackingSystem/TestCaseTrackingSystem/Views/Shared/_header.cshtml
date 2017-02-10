@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="row navigation-row">
+            <div class="col-lg-10 no-padding text-left">
+                @{ Html.RenderAction("Show", "NavigationMenu"); }
+            </div>
+            <div class="col-lg-1 text-center">
+                <button type="button" class="btn btn-link navbar-btn btn-lg" onclick="location.href='@Url.Action("Show", "User", new { login = User.Identity.Name} )'">Hello, @User.Identity.Name</button>
+            </div>
+            <div class="col-lg-1 text-right">
+                <input class="btn btn-default navbar-btn btn-lg" type="button" value="Logout" onclick="location.href='@Url.Action("Logout", "Login")'" />
+            </div>
+        </div>
+    </div>
+</nav>
