@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DataAccess.Entities;
-using DataAccess.Repositories.Abstract;
 using System.Data.Entity;
+using DataAccess.Repositories.Interfaces;
 
 namespace DataAccess.Repositories.Implementation
 {

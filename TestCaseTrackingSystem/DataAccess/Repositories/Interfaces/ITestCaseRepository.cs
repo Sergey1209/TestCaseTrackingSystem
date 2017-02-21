@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using DataAccess.Entities;
 
-namespace DataAccess.Repositories.Abstract
+namespace DataAccess.Repositories.Interfaces
 {
     public interface ITestCaseRepository : IRepository<TestCase>
     {

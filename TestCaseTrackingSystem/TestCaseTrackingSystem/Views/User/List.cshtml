@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TestCaseStorage.Models.Users.User>
+﻿@model IEnumerable<TestCaseStorage.Models.Users.UserViewModel>
 
 @{
     ViewBag.Title = "All Users";
@@ -38,7 +38,7 @@
                     <div class="col-lg-6 text-right">
                         @using (Html.BeginForm("Edit", "User", FormMethod.Get))
                         {
-                            @Html.Hidden("userId", user.ID)
+                            @Html.Hidden("id", user.ID)
 
                             <input class="btn btn-default btn-md" type="submit" value="Edit" />
                         }
@@ -46,7 +46,7 @@
                     <div class="col-lg-6">
                         @using (Html.BeginForm("Delete", "User", FormMethod.Post))
                         {
-                            @Html.Hidden("userId", user.ID)
+                            @Html.Hidden("id", user.ID)
 
                             <input class="btn btn-default btn-md" type="submit" value="Delete" />
                         }

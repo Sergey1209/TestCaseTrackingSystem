@@ -1,14 +1,13 @@
 ﻿using System;
+using Services.Interfaces;
 
-namespace TestCaseStorage.Models.Iterations
+namespace Services.DTO
 {
-    public class IterationViewModel
+    public class IterationDto : IDto
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
-        public bool IsNew => ID == 0;
     }
 }

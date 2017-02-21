@@ -1,7 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using DataAccess.Entities;
-using DataAccess.Repositories.Abstract;
+using DataAccess.Repositories.Interfaces;
 
 namespace DataAccess.Repositories.Implementation
 {
@@ -11,9 +12,19 @@ namespace DataAccess.Repositories.Implementation
         {
         }
 
-        public User GetByLogin(string login)
+        public IEnumerable<User> GetAllUsers()
         {
-            return TctsDataContext.Users.FirstOrDefault(t => t.Login == login);
+            return TctsDataContext.Users.Include(t => t.Role);
+        }
+
+        public User GetUserById(int id)
+        {
+            return TctsDataContext.Users.Include(t => t.Role).FirstOrDefault(t => t.ID == id);
+        }
+
+        public User GetUserByLogin(string login)
+        {
+            return TctsDataContext.Users.Include(t => t.Role).FirstOrDefault(t => t.Login == login);
         }
 
         private TCTSDataContext TctsDataContext => (TCTSDataContext)Context;

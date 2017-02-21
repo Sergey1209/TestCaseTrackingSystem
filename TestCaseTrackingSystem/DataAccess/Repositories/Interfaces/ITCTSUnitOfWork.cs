@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataAccess.Repositories.Abstract
+namespace DataAccess.Repositories.Interfaces
 {
     public interface ITCTSUnitOfWork : IDisposable
     {

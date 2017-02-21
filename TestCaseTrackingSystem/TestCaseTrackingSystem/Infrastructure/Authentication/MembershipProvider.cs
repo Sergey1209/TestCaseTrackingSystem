@@ -2,8 +2,8 @@
 using System.Web.Security;
 using DataAccess;
 using DataAccess.Entities;
-using DataAccess.Repositories.Abstract;
 using DataAccess.Repositories.Implementation;
+using DataAccess.Repositories.Interfaces;
 
 namespace TestCaseStorage.Infrastructure.Authentication
 {
@@ -75,7 +75,7 @@ namespace TestCaseStorage.Infrastructure.Authentication
 
         public override bool ValidateUser(string username, string password)
         {
-            var user = UnitOfWork.UserRepository.GetByLogin(username);
+            var user = UnitOfWork.UserRepository.GetUserByLogin(username);
 
             return user != null && user.Password.Equals(password);
         }
@@ -92,7 +92,7 @@ namespace TestCaseStorage.Infrastructure.Authentication
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            var user = UnitOfWork.UserRepository.GetByLogin(username);
+            var user = UnitOfWork.UserRepository.GetUserByLogin(username);
 
             return user != null 
                 ? new MembershipUser("TCTSMembershipProvider", user.Login, user.ID, user.Email, string.Empty, string.Empty, true, false, user.CreatedDate, user.LastLogin ?? DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue) 

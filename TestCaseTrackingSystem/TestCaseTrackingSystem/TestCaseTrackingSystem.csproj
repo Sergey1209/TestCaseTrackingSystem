@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -112,8 +113,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Authentication\MembershipProvider.cs" />
+    <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Models\AutoMapper\BacklogItemProfile.cs" />
+    <Compile Include="Models\AutoMapper\IterationProfile.cs" />
+    <Compile Include="Models\AutoMapper\UserProfile.cs" />
     <Compile Include="Models\BacklogItems\BacklogItem.cs" />
     <Compile Include="Models\Iterations\Iteration.cs" />
+    <Compile Include="Models\Iterations\IterationSelectViewModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\Shared\InfoLineModel.cs" />
     <Compile Include="Models\Shared\NavigationMenuModel.cs" />
@@ -182,9 +188,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
-    <Folder Include="Infrastructure\Extensions\" />
-    <Folder Include="Infrastructure\Implementation\" />
-    <Folder Include="Infrastructure\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -193,6 +196,10 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{c890458a-667a-4614-8504-16e7607a7940}</Project>
       <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{92878c7b-a7d4-4ce6-b9c3-ba82ab5e492b}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,61 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using DataAccess;
-using DataAccess.Entities;
-using DataAccess.Repositories.Abstract;
 using DataAccess.Repositories.Implementation;
-using User = TestCaseStorage.Models.Users.User;
+using Services.DTO;
+using Services.Implementation;
+using Services.Interfaces;
+using TestCaseStorage.Models.Users;
 
 namespace TestCaseStorage.Controllers
 {
     public class UserController : Controller
     {
-        private ITCTSUnitOfWork UnitOfWork { get; }
+        private IUserService UserService { get; }
 
         public UserController()
         {
-            UnitOfWork = new TCTSUnitOfWork(new TCTSDataContext());
+            UserService = new UserDbService(new TCTSUnitOfWork(new TCTSDataContext()));
         }
 
         [HttpGet]
         public ViewResult List()
         {
-            var usersModel = UnitOfWork.UserRepository.GetAll().Select(t =>
-                    new User
-                    {
-                        ID = t.ID,
-                        Login = t.Login,
-                        Password = t.Password,
-                        Role = (UserRoleEnum) t.RoleID,
-                        Email = t.Email,
-                        FirstName = t.FirstName,
-                        LastName = t.LastName,
-                        DateCreated = t.CreatedDate,
-                        LastLoginDate = t.LastLogin
-                    }
-            );
+            var usersListModel = Mapper.Map<IEnumerable<UserViewModel>>(UserService.GetAllUsers());
 
-            return View("List", usersModel);
+            return View("List", usersListModel);
         }
 
         [HttpGet]
-        public ViewResult Show(string login)
+        public ViewResult Show(int id)
         {
-            var user = UnitOfWork.UserRepository.GetByLogin(login);
-
-            var userModel = new User
-            {
-                ID = user.ID,
-                Login = user.Login,
-                Password = user.Password,
-                Role = (UserRoleEnum)user.RoleID,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                 DateCreated = user.CreatedDate
-            };
+            var userModel = Mapper.Map<UserViewModel>(UserService.GetUserById(id));
 
             return View("Show", userModel);
         }
@@ -67,67 +42,32 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpGet]
-        public ViewResult Edit(int userId)
+        public ViewResult Edit(int id)
         {
-            var user = UnitOfWork.UserRepository.GetById(userId);
-
-            var userModel = new User
-            {
-                ID = user.ID,
-                Login = user.Login,
-                Password = user.Password,
-                Role = (UserRoleEnum)user.RoleID,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName
-            };
+            var userModel = Mapper.Map<UserViewModel>(UserService.GetUserById(id));
 
             return View("Edit", userModel);
         }
 
         [HttpPost]
-        public ActionResult Save(User user)
+        public ActionResult Save(UserViewModel user)
         {
-            var userEntity = new DataAccess.Entities.User
+            if (user.IsNew)
             {
-                Login = user.Login,
-                Password = user.Password,
-                RoleID = (int)user.Role,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                CreatedDate = DateTime.Now,
-                Locked = false
-            };
-
-            if (user.ID == 0)
-            { 
-                UnitOfWork.UserRepository.Add(userEntity);
+                UserService.AddNew(Mapper.Map<UserDto>(user));
             }
             else
             {
-                var existingUser = UnitOfWork.UserRepository.GetById(user.ID);
-
-                existingUser.Login = user.Login;
-                existingUser.Password = user.Password;
-                existingUser.RoleID = (int) user.Role;
-                existingUser.Email = user.Email;
-                existingUser.FirstName = user.FirstName;
-                existingUser.LastName = user.LastName;
-                existingUser.CreatedDate = DateTime.Now;
-                existingUser.Locked = false;
+                UserService.Update(Mapper.Map<UserDto>(user));
             }
-
-            UnitOfWork.Save();
 
             return Redirect("List");
         }
 
         [HttpPost]
-        public ActionResult Delete(int userId)
+        public ActionResult Delete(int id)
         {
-            UnitOfWork.UserRepository.Remove(UnitOfWork.UserRepository.GetById(userId));
-            UnitOfWork.Save();
+            UserService.DeleteUser(id);
 
             return Redirect("List");
         }

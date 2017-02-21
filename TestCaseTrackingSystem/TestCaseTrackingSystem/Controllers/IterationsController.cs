@@ -1,33 +1,30 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using DataAccess;
-using DataAccess.Repositories.Abstract;
 using DataAccess.Repositories.Implementation;
+using Services.DTO;
+using Services.Implementation;
+using Services.Interfaces;
 using TestCaseStorage.Models.Iterations;
 
 namespace TestCaseStorage.Controllers
 {
     public class IterationsController : Controller
     {
-        private ITCTSUnitOfWork UnitOfWork { get; }
+        private IIterationService IterationsService { get; }
 
         public IterationsController()
         {
-            UnitOfWork = new TCTSUnitOfWork(new TCTSDataContext());
+            IterationsService = new IterationDbService(new TCTSUnitOfWork(new TCTSDataContext()));
         }
 
         [HttpGet]
         public ViewResult List()
         {
-            var iterations = UnitOfWork.IterationRepository.GetAll().Select(t => new Iteration
-            {
-                ID = t.ID,
-                Name = t.Name,
-                StartDate = t.StartDate,
-                EndDate = t.EndDate
-            });
+            var iterationsListModel = Mapper.Map<IEnumerable<IterationViewModel>>(IterationsService.GetAllIterations());
 
-            return View("List", iterations);
+            return View("List", iterationsListModel);
         }
 
         [HttpGet]
@@ -39,15 +36,7 @@ namespace TestCaseStorage.Controllers
         [HttpGet]
         public ViewResult Edit(int iterationId)
         {
-            var iteration = UnitOfWork.IterationRepository.GetById(iterationId);
-
-            var iterationModel = new Iteration
-            {
-                ID = iteration.ID,
-                Name = iteration.Name,
-                StartDate = iteration.StartDate,
-                EndDate = iteration.EndDate
-            };
+            var iterationModel = Mapper.Map<IterationViewModel>(IterationsService.GetIterationById(iterationId));
 
             return View("Edit", iterationModel);
         }
@@ -55,33 +44,22 @@ namespace TestCaseStorage.Controllers
         [HttpPost]
         public ActionResult Delete(int iterationId)
         {
-            UnitOfWork.IterationRepository.Remove(UnitOfWork.IterationRepository.GetById(iterationId));
-            UnitOfWork.Save();
+            IterationsService.DeleteIteration(iterationId);
 
             return Redirect("List");
         }
 
         [HttpPost]
-        public ActionResult Save(Iteration iteration)
+        public ActionResult Save(IterationViewModel iteration)
         {
-            if (iteration.ID == 0)
+            if (iteration.IsNew)
             {
-                UnitOfWork.IterationRepository.Add(new DataAccess.Entities.Iteration
-                {
-                    Name = iteration.Name,
-                    StartDate = iteration.StartDate,
-                    EndDate = iteration.EndDate
-                });
+                IterationsService.AddNew(Mapper.Map<IterationDto>(iteration));
             }
             else
             {
-                var iterationEntity = UnitOfWork.IterationRepository.GetById(iteration.ID);
-                iterationEntity.Name = iteration.Name;
-                iterationEntity.StartDate = iteration.StartDate;
-                iterationEntity.EndDate = iterationEntity.EndDate;
+                IterationsService.Update(Mapper.Map<IterationDto>(iteration));
             }
-
-            UnitOfWork.Save();
 
             return Redirect("List");
         }

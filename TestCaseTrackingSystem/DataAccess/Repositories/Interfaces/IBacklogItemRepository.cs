@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DataAccess.Entities;
 
-namespace DataAccess.Repositories.Abstract
+namespace DataAccess.Repositories.Interfaces
 {
     public interface IBacklogItemRepository : IRepository<BacklogItem>
     {

@@ -1,6 +1,6 @@
 ﻿using DataAccess.Entities;
 
-namespace DataAccess.Repositories.Abstract
+namespace DataAccess.Repositories.Interfaces
 {
     public interface IIterationRepository : IRepository<Iteration>
     {

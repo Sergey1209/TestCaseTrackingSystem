@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace DataAccess.Repositories.Abstract
+namespace DataAccess.Repositories.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
@@ -15,5 +15,7 @@ namespace DataAccess.Repositories.Abstract
 
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+
+        void Update(TEntity entity);
     }
 }

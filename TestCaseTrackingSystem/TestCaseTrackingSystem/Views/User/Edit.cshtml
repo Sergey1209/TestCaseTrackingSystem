@@ -1,7 +1,7 @@
-﻿@model TestCaseStorage.Models.Users.User
+﻿@model TestCaseStorage.Models.Users.UserViewModel
 
 @{
-    ViewBag.Title = Model != null ? "Editing User '" + Model.FullName + "'" : "Add New User";
+    ViewBag.Title = Model != null ? "Editing User '" + Model.Login + "'" : "Add New User";
 }
 
 @using (Html.BeginForm("Save", "User", FormMethod.Post))

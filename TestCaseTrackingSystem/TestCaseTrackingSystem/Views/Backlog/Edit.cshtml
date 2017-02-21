@@ -7,6 +7,7 @@
 @using (Html.BeginForm("Save", "Backlog", FormMethod.Post))
 {
     @Html.HiddenFor(t => t.ID)
+    @Html.HiddenFor(t => t.UserCreatedId)
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 input-group-lg">
             @Html.TextBoxFor(t => t.Title, new { @class = "form-control navbar-btn", placeholder = "Title" })
@@ -19,12 +20,12 @@
     </div>
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.EnumDropDownListFor(t => t.Type, "Select type", new { @class = "form-control navbar-btn", placeholder = "Type" })
+            @Html.EnumDropDownListFor(t => t.Type, "Select Type", new { @class = "form-control navbar-btn", placeholder = "Type" })
         </div>
     </div>
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.DropDownListFor(t => t.BelongsToIterationId, Model.Iterations, "Select iteration", new { @class = "form-control navbar-btn", placeholder = "Iteration" })
+            @Html.DropDownListFor(t => t.IterationId, Model.Iterations, "Select iteration", new { @class = "form-control navbar-btn", placeholder = "Iteration" })
         </div>
     </div>
     <div class="row">

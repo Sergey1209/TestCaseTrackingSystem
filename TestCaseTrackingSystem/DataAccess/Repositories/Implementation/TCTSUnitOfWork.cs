@@ -1,4 +1,4 @@
-﻿using DataAccess.Repositories.Abstract;
+﻿using DataAccess.Repositories.Interfaces;
 
 namespace DataAccess.Repositories.Implementation
 {

@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using DataAccess.Entities;
-using DataAccess.Repositories.Abstract;
+using DataAccess.Repositories.Interfaces;
 
 namespace DataAccess.Repositories.Implementation
 {
@@ -31,6 +31,13 @@ namespace DataAccess.Repositories.Implementation
                 .Include(t => t.CreatedBy)
                 .Include(t => t.Iteration)
                 .First(t => t.ID == id);
+        }
+
+        public override void Update(BacklogItem entity)
+        {
+            base.Update(entity);
+
+            Context.Entry(entity).Property(t => t.CreatedByID).IsModified = false;
         }
     }
 }

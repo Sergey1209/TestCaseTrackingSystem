@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using DataAccess.Repositories.Abstract;
+using DataAccess.Repositories.Interfaces;
 
 namespace DataAccess.Repositories.Implementation
 {
@@ -56,6 +56,13 @@ namespace DataAccess.Repositories.Implementation
         public virtual void RemoveRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().RemoveRange(entities);
+        }
+
+        public virtual void Update(TEntity entity)
+        {
+            Context.Set<TEntity>().Attach(entity);
+            var entry = Context.Entry(entity);
+            entry.State = EntityState.Modified;
         }
     }
 }

@@ -1,119 +1,80 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
+using AutoMapper;
 using DataAccess;
-using DataAccess.Entities;
-using DataAccess.Repositories.Abstract;
 using DataAccess.Repositories.Implementation;
+using Services.DTO;
+using Services.Implementation;
+using Services.Interfaces;
+using TestCaseStorage.Infrastructure.Extensions;
 using TestCaseStorage.Models.BacklogItems;
-using BacklogItem = TestCaseStorage.Models.BacklogItems.BacklogItem;
 
 namespace TestCaseStorage.Controllers
 {
     public class BacklogController : Controller
     {
-        private ITCTSUnitOfWork UnitOfWork { get; }
-
+        private readonly IBacklogService BackogService;
+        private readonly IIterationService IterationService;
+        private readonly IUserService UserService;
+        
         public BacklogController()
         {
-            UnitOfWork = new TCTSUnitOfWork(new TCTSDataContext());
+            BackogService = new BacklogDbService(new TCTSUnitOfWork(new TCTSDataContext()));
+            IterationService = new IterationDbService(new TCTSUnitOfWork(new TCTSDataContext()));
+            UserService = new UserDbService(new TCTSUnitOfWork(new TCTSDataContext()));
         }
 
         [HttpGet]
         public ViewResult List()
         {
-            var backlogItems = UnitOfWork.BacklogItemRepository.GetAllBacklogItems().Select(ConvertEntityToViewModel);
+            var listModel = Mapper.Map<IEnumerable<BacklogItemViewModel>>(BackogService.GetAllBacklogItems());
             
-            return View("List", backlogItems);
+            return View("List", listModel);
         }
 
         [HttpGet]
         public ActionResult Add()
         {
-            return View("Edit", ConvertEntityToEditModel(null));
+            var editModel = Mapper.Map<BacklogItemEditModel>(new BacklogItemDto());
+            editModel.Iterations = IterationService.GetAllIterations().ToSelectList(t => t.Name, t => t.ID);
+            editModel.Users = UserService.GetAllUsers().ToSelectList(t => t.Login, t => t.ID);
+            editModel.UserCreatedId = (int)Membership.GetUser(User.Identity.Name).ProviderUserKey;
+
+            return View("Edit", editModel);
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var backlogItem = UnitOfWork.BacklogItemRepository.GetBacklogItemById(id);
-            
-            return View("Edit", ConvertEntityToEditModel(backlogItem));
+            var currentBacklogItemModel = Mapper.Map<BacklogItemEditModel>(BackogService.GetBacklogItemById(id));
+            currentBacklogItemModel.Iterations = IterationService.GetAllIterations().ToSelectList(t => t.Name, t => t.ID, t => t.Name == currentBacklogItemModel.Iteration);
+            currentBacklogItemModel.Users = UserService.GetAllUsers().ToSelectList(t => t.Login, t => t.ID, t => t.Login == currentBacklogItemModel.AssignedTo);
+
+            return View("Edit", currentBacklogItemModel);
         }
 
         [HttpPost]
-        public ActionResult Delete()
+        public ActionResult Delete(int id)
         {
+            BackogService.DeleteBacklogItem(id);
+
             return Redirect("List");
         }
 
         [HttpPost]
-        public ActionResult Save(BacklogItem backlogItem)
+        public ActionResult Save(BacklogItemEditModel backlogItem)
         {
-            if (backlogItem.ID == 0)
+            if (backlogItem.IsNew)
             {
-                var backlogEntity = new DataAccess.Entities.BacklogItem
-                {
-                    Title = backlogItem.Title,
-                    Description = backlogItem.Description,
-                    TypeID = (int) backlogItem.Type,
-                    IterationID = backlogItem.BelongsToIterationId,
-                    AssignedToID = backlogItem.AssignedToUserId,
-                    DateCreated = backlogItem.DateCreated,
-                    CreatedByID = UnitOfWork.UserRepository.GetByLogin(User.Identity.Name).ID
-                };
-
-                UnitOfWork.BacklogItemRepository.Add(backlogEntity);
+                BackogService.AddNew(Mapper.Map<BacklogItemDto>(backlogItem));
             }
             else
             {
-                // Update code here
+                BackogService.Update(Mapper.Map<BacklogItemDto>(backlogItem));
             }
-
-            UnitOfWork.Save();
 
             return Redirect("List");
-        }
-
-        private static BacklogItemViewModel ConvertEntityToViewModel(DataAccess.Entities.BacklogItem backlogItemEntity)
-        {
-            if (backlogItemEntity == null)
-            {
-                return new BacklogItemViewModel();
-            }
-
-            return new BacklogItemViewModel
-            {
-                ID = backlogItemEntity.ID,
-                Title = backlogItemEntity.Title,
-                Description = backlogItemEntity.Description,
-                DateCreated = backlogItemEntity.DateCreated,
-                Type = (BacklogItemTypeEnum)backlogItemEntity.Type.ID,
-                BelongsToIteration = backlogItemEntity.Iteration.Name,
-                AssignedToUser = backlogItemEntity.AssignedTo.Login,
-                UserCreated = backlogItemEntity.CreatedBy.Login
-            };
-        }
-
-        private BacklogItemEditModel ConvertEntityToEditModel(DataAccess.Entities.BacklogItem backlogItemEntity)
-        {
-            var backlogItemEditModel = new BacklogItemEditModel
-            {
-                Iterations = UnitOfWork.IterationRepository.GetAll().Select(t => new SelectListItem
-                {
-                    Value = t.ID.ToString(),
-                    Text = t.Name
-                }),
-                Users = UnitOfWork.UserRepository.GetAll().Select(t => new SelectListItem
-                {
-                    Value = t.ID.ToString(),
-                    Text = t.Login
-                })
-            };
-
-            //var backlogItemEditModel = ConvertEntityToViewModel(backlogItemEntity);
-
-
-            return backlogItemEditModel;
         }
     }
 }
