@@ -42,15 +42,15 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int iterationId)
+        public RedirectToRouteResult Delete(int iterationId)
         {
             IterationsService.DeleteIteration(iterationId);
 
-            return Redirect("List");
+            return RedirectToAction("List");
         }
 
         [HttpPost]
-        public ActionResult Save(IterationViewModel iteration)
+        public RedirectToRouteResult Save(IterationViewModel iteration)
         {
             if (iteration.IsNew)
             {
@@ -61,7 +61,7 @@ namespace TestCaseStorage.Controllers
                 IterationsService.Update(Mapper.Map<IterationDto>(iteration));
             }
 
-            return Redirect("List");
+            return RedirectToAction("List");
         }
     }
 }

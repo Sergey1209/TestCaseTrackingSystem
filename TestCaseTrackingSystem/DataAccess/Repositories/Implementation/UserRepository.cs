@@ -14,17 +14,17 @@ namespace DataAccess.Repositories.Implementation
 
         public IEnumerable<User> GetAllUsers()
         {
-            return TctsDataContext.Users.Include(t => t.Role);
+            return TctsDataContext.Users;
         }
 
         public User GetUserById(int id)
         {
-            return TctsDataContext.Users.Include(t => t.Role).FirstOrDefault(t => t.ID == id);
+            return TctsDataContext.Users.FirstOrDefault(t => t.ID == id);
         }
 
         public User GetUserByLogin(string login)
         {
-            return TctsDataContext.Users.Include(t => t.Role).FirstOrDefault(t => t.Login == login);
+            return TctsDataContext.Users.FirstOrDefault(t => t.Login == login);
         }
 
         private TCTSDataContext TctsDataContext => (TCTSDataContext)Context;

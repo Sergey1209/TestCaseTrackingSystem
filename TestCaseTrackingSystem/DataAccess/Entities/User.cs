@@ -9,7 +9,7 @@ namespace DataAccess.Entities
     {
         public int ID { get; set; }
         
-        public int RoleID { get; set; }
+        public UserRole Role { get; set; }
         
         public string Login { get; set; }
         
@@ -26,9 +26,7 @@ namespace DataAccess.Entities
         public DateTime CreatedDate { get; set; }
         
         public bool Locked { get; set; }
-
         
-        public UserRole Role { get; set; }
         
         public ICollection<BacklogItem> BacklogItems { get; set; }
 

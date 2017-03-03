@@ -25,7 +25,7 @@ namespace Services.Implementation
 
         public void DeleteIteration(int id)
         {
-            UnitOfWork.IterationRepository.Remove(UnitOfWork.IterationRepository.GetById(id));
+            UnitOfWork.IterationRepository.RemoveById(id);
             UnitOfWork.Save();
         }
 

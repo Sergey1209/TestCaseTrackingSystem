@@ -10,7 +10,7 @@ namespace TestCaseStorage.Models.BacklogItems
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public BacklogItemTypeEnum Type { get; set; }
+        public BacklogItemType Type { get; set; }
         public string Iteration { get; set; }
         public string UserCreated { get; set; }
         public DateTime DateCreated { get; set; }

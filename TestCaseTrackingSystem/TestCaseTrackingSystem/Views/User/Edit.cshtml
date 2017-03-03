@@ -1,4 +1,5 @@
-﻿@model TestCaseStorage.Models.Users.UserViewModel
+﻿@using TestCaseStorage.Infrastructure.HtmlHelpers
+@model TestCaseStorage.Models.Users.UserViewModel
 
 @{
     ViewBag.Title = Model != null ? "Editing User '" + Model.Login + "'" : "Add New User";
@@ -7,36 +8,13 @@
 @using (Html.BeginForm("Save", "User", FormMethod.Post))
 {
     @Html.HiddenFor(t => t.ID)
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.Login, new { @class = "form-control navbar-btn", placeholder = "Login" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.PasswordFor(t => t.Password, new { @class = "form-control navbar-btn", placeholder = "Password" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.EnumDropDownListFor(t => t.Role, new { @class = "form-control navbar-btn", placeholder = "Role" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.Email, new { @class = "form-control navbar-btn", placeholder = "Email" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.FirstName, new { @class = "form-control navbar-btn", placeholder = "First Name" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.LastName, new { @class = "form-control navbar-btn", placeholder = "Last Name" })
-        </div>
-    </div>
+
+    @Html.TextBoxLineFor(t => t.Login, "Login")
+    @Html.EnumDropDownLineFor(t => t.Role, "Role")
+    @Html.TextBoxLineFor(t => t.Email, "Email")
+    @Html.TextBoxLineFor(t => t.FirstName, "First Name")
+    @Html.TextBoxLineFor(t => t.LastName, "Last Name")
+
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
             @if (Model != null)

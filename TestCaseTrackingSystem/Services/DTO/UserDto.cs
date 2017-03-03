@@ -10,10 +10,10 @@ namespace Services.DTO
         public string Login { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public UserRoleEnum Role { get; set; }
+        public UserRole Role { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime? LastLoginDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? LastLogin { get; set; }
     }
 }

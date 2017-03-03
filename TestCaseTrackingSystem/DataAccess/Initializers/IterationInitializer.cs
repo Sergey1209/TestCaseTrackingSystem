@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using DataAccess.Entities;
 
@@ -7,7 +6,6 @@ namespace DataAccess.Initializers
 {
     internal class IterationInitializer: EntityInitializerBase<Iteration>
     {
-        protected override IEnumerable<Iteration> BuiltInEntities { get; }
         public override void InitializeModel(DbModelBuilder modelBuilder)
         {
             var entity = modelBuilder.Entity<Iteration>();

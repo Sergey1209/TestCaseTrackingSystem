@@ -13,12 +13,25 @@ namespace DataAccess.Repositories.Implementation
         public TestCasesRepository(DbContext context) : base(context)
         {
         }
+        
+        public IEnumerable<TestCase> GetAllTestCases()
+        {
+            return TctsDataContext.TestCases
+                .Include(t => t.CreatedBy)
+                .Include(t => t.RunBy);
+        }
+
+        public TestCase GetTestCaseById(int id)
+        {
+            return TctsDataContext.TestCases
+                .Include(t => t.CreatedBy)
+                .Include(t => t.RunBy)
+                .Single(t => t.ID == id);
+        }
 
         public IEnumerable<TestCase> GetAllBacklogItemTestCases(int backlogItemId)
         {
-            return TctsDataContext.TestCases
-                .Include(t => t.Status)
-                .Where(t => t.BacklogItemID == backlogItemId);
+            return TctsDataContext.TestCases.Where(t => t.BacklogItemID == backlogItemId);
         }
 
         public IEnumerable<TestCase> GetBacklogItemTestCases(int backlogItemId, Expression<Func<TestCase, bool>> predicate)

@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using TestCaseStorage.Models.Shared;
 
 namespace TestCaseStorage.Controllers
 {
@@ -7,7 +6,7 @@ namespace TestCaseStorage.Controllers
     {
         public ViewResult Show()
         {
-            return View("_navigationMenu", new NavigationMenuModel());
+            return View("_navigationMenu");
         }
     }
 }

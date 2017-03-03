@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TestCaseStorage.Models.TestCases.TestCase>
+﻿@model IEnumerable<TestCaseStorage.Models.TestCases.TestCaseListViewModel>
 
 @{
     ViewBag.Title = "All Test Cases";
@@ -11,7 +11,48 @@
 
 @if (Model.Any())
 {
-    
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created By</th>
+            <th>Date Created</th>
+            <th>Run By</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        @foreach (var testCase in Model)
+        {
+            <tr>
+                <td>@testCase.ID</td>
+                <td>@testCase.Title</td>
+                <td>@testCase.Description</td>
+                <td>@testCase.CreatedBy</td>
+                <td>@testCase.DateCreated</td>
+                <td>@testCase.RunBy</td>
+                <td>@testCase.Status.ToString()</td>
+                <td>
+                    <div class="col-lg-6 text-right">
+                        @using (Html.BeginForm("Edit", "TestCase", FormMethod.Get))
+                        {
+                            @Html.Hidden("id", testCase.ID)
+
+                            <input class="btn btn-default btn-md" type="submit" value="Edit" />
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @using (Html.BeginForm("Delete", "TestCase", FormMethod.Post))
+                        {
+                            @Html.Hidden("id", testCase.ID)
+
+                            <input class="btn btn-default btn-md" type="submit" value="Delete" data-btn-confirm/>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
 }
 else
 {

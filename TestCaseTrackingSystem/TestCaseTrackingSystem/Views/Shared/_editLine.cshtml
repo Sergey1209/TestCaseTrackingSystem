@@ -1,0 +1,7 @@
+﻿@model TestCaseStorage.Models.Shared.EditLineModel
+
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-4 input-group-lg">
+        @Html.TextBox(Model.ControlName, Model.ControlValue, new { @class = "form-control navbar-btn", placeholder = Model.PlaceHolder })
+    </div>
+</div>

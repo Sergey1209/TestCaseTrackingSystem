@@ -1,18 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using DataAccess.Initializers;
-
-namespace DataAccess.Entities
+﻿namespace DataAccess.Entities
 {
-    [Initializer(typeof(UserRolesInitializer))]
-    public class UserRole
+    public enum UserRole
     {
-        [Key]
-        public int ID { get; set; }
-
-        [Required]
-        public string Role { get; set; }
-
-        public ICollection<User> Users { get; set; }
+        Admin = 1,
+        Developer = 2,
+        QA = 3
     }
 }

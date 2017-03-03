@@ -9,7 +9,7 @@ namespace DataAccess.Entities
     {
         public int ID { get; set; }
         
-        public int TypeID { get; set; }
+        public BacklogItemType Type { get; set; }
         
         public string Title { get; set; }
 
@@ -22,9 +22,6 @@ namespace DataAccess.Entities
         public DateTime DateCreated { get; set; }
 
         public int? AssignedToID { get; set; }
-
-        
-        public BacklogItemType Type { get; set; }
         
         public Iteration Iteration { get; set; }
         

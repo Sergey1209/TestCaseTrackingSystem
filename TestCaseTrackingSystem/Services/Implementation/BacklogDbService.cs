@@ -25,7 +25,7 @@ namespace Services.Implementation
 
         public void DeleteBacklogItem(int id)
         {
-            UnitOfWork.BacklogItemRepository.Remove(UnitOfWork.BacklogItemRepository.GetById(id));
+            UnitOfWork.BacklogItemRepository.RemoveById(id);
             UnitOfWork.Save();
         }
 
@@ -53,7 +53,7 @@ namespace Services.Implementation
                 DateCreated = backlog.DateCreated,
                 IterationID = backlog.Iteration?.ID,
                 Iteration = backlog.Iteration?.Name,
-                Type = (BacklogItemTypeEnum)backlog.Type.ID,
+                Type = backlog.Type,
                 UserCreatedID = backlog.CreatedByID,
                 UserCreated = backlog.CreatedBy.Login
             };
@@ -69,7 +69,7 @@ namespace Services.Implementation
                 AssignedToID = backlogItemDto.AssignedToUserID,
                 DateCreated = backlogItemDto.DateCreated,
                 IterationID = backlogItemDto.IterationID,
-                TypeID = (int)backlogItemDto.Type,
+                Type = backlogItemDto.Type,
                 CreatedByID = backlogItemDto.UserCreatedID
             };
         }

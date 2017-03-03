@@ -14,7 +14,7 @@ namespace TestDataAccess
 
                 foreach (var testCase in testCases)
                 {
-                    Console.WriteLine($"Title - {testCase.Title}, Status - {testCase.Status.Name}");
+                    Console.WriteLine($"Title - {testCase.Title}, Status - {testCase.Status}");
                 }
             }
 

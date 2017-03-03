@@ -1,12 +1,10 @@
-﻿using DataAccess.Initializers;
-
-namespace DataAccess.Entities
+﻿namespace DataAccess.Entities
 {
-    [Initializer(typeof(TestCaseStatusInitializer))]
-    public class TestCaseStatus
+    public enum TestCaseStatus
     {
-        public int ID { get; set; }
-        
-        public string Name { get; set; }
+        NotStarted = 1,
+        InProgress = 2,
+        Failed = 3,
+        Pased = 4
     }
 }

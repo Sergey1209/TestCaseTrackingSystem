@@ -9,7 +9,7 @@ namespace Services.DTO
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public BacklogItemTypeEnum Type { get; set; }
+        public BacklogItemType Type { get; set; }
         public int? IterationID { get; set; }
         public string Iteration { get; set; }
         public int? AssignedToUserID { get; set; }

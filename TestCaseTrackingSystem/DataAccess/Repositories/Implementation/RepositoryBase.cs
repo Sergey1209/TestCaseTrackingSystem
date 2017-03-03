@@ -53,6 +53,11 @@ namespace DataAccess.Repositories.Implementation
             Context.Set<TEntity>().Remove(entity);
         }
 
+        public void RemoveById(int id)
+        {
+            Context.Set<TEntity>().Remove(Context.Set<TEntity>().Find(id));
+        }
+
         public virtual void RemoveRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().RemoveRange(entities);

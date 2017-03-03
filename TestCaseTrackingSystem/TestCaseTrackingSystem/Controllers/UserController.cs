@@ -50,7 +50,7 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(UserViewModel user)
+        public RedirectToRouteResult Save(UserViewModel user)
         {
             if (user.IsNew)
             {
@@ -61,15 +61,15 @@ namespace TestCaseStorage.Controllers
                 UserService.Update(Mapper.Map<UserDto>(user));
             }
 
-            return Redirect("List");
+            return RedirectToAction("List");
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public RedirectToRouteResult Delete(int id)
         {
             UserService.DeleteUser(id);
 
-            return Redirect("List");
+            return RedirectToAction("List");
         }
     }
 }

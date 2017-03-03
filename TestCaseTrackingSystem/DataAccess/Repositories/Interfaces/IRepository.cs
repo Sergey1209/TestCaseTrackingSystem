@@ -14,6 +14,7 @@ namespace DataAccess.Repositories.Interfaces
         void AddRange(IEnumerable<TEntity> entities);
 
         void Remove(TEntity entity);
+        void RemoveById(int id);
         void RemoveRange(IEnumerable<TEntity> entities);
 
         void Update(TEntity entity);

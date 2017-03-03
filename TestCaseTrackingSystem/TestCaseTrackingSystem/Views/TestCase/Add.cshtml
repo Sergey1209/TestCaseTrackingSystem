@@ -1,0 +1,25 @@
+﻿@using TestCaseStorage.Infrastructure.HtmlHelpers
+@model TestCaseStorage.Models.TestCases.TestCaseAddViewModel
+
+@{
+    ViewBag.Title = "Add New Test Case";
+}
+
+@using (Html.BeginForm("Save", "TestCase", FormMethod.Post))
+{
+    @Html.HiddenFor(t => t.ID)
+
+    @Html.TextBoxLineFor(t => t.Title, "Title")
+    @Html.TextBoxLineFor(t => t.Description, "Description")
+    @Html.DropDownListLineFor(t => t.BacklogItemID, Model.BacklogItems, "Backlog Item")
+
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
+            @if (Model != null)
+            {
+                @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width" })
+            }
+            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value="Add" />
+        </div>
+    </div>
+}

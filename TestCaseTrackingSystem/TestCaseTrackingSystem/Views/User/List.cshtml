@@ -32,8 +32,8 @@
                 <td>@user.Email</td>
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
-                <td>@user.DateCreated</td>
-                <td>@user.LastLoginDate</td>
+                <td>@user.CreatedDate</td>
+                <td>@user.LastLogin</td>
                 <td>
                     <div class="col-lg-6 text-right">
                         @using (Html.BeginForm("Edit", "User", FormMethod.Get))
@@ -48,7 +48,7 @@
                         {
                             @Html.Hidden("id", user.ID)
 
-                            <input class="btn btn-default btn-md" type="submit" value="Delete" />
+                            <input class="btn btn-default btn-md" type="submit" value="Delete" data-btn-confirm/>
                         }
                     </div>
                 </td>

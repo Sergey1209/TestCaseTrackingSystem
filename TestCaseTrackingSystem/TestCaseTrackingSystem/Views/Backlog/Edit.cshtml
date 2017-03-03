@@ -1,4 +1,5 @@
-﻿@model TestCaseStorage.Models.BacklogItems.BacklogItemEditModel
+﻿@using TestCaseStorage.Infrastructure.HtmlHelpers
+@model TestCaseStorage.Models.BacklogItems.BacklogItemEditModel
 
 @{
     ViewBag.Title = Model == null || Model.ID == 0 ? "Add New Backlog Item" : "Editing Backlog Item '" + Model.Title + "'";
@@ -8,36 +9,14 @@
 {
     @Html.HiddenFor(t => t.ID)
     @Html.HiddenFor(t => t.UserCreatedId)
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.Title, new { @class = "form-control navbar-btn", placeholder = "Title" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.Description, new { @class = "form-control navbar-btn", placeholder = "Description" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.EnumDropDownListFor(t => t.Type, "Select Type", new { @class = "form-control navbar-btn", placeholder = "Type" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.DropDownListFor(t => t.IterationId, Model.Iterations, "Select iteration", new { @class = "form-control navbar-btn", placeholder = "Iteration" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.DropDownListFor(t => t.AssignedToUserId, Model.Users, "Select user", new { @class = "form-control navbar-btn", placeholder = "Iteration" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.DateCreated, new { @class = "form-control navbar-btn", placeholder = "End Date" })
-        </div>
-    </div>
+
+    @Html.TextBoxLineFor(t => t.Title, "Title")
+    @Html.TextBoxLineFor(t => t.Description, "Description")
+    @Html.EnumDropDownLineFor(t => t.Type, "Type")
+    @Html.DropDownListLineFor(t => t.IterationId, Model.Iterations, "Iteration")
+    @Html.DropDownListLineFor(t => t.AssignedToUserId, Model.Users, "User")
+    @Html.DatePickerLineFor(t => t.DateCreated, "End Date")
+
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
             @if (Model != null)

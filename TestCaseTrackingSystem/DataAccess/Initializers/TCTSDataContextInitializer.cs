@@ -12,7 +12,7 @@ namespace DataAccess.Initializers
 
         static TCTSDataContextInitializer()
         {
-            Assembly currentAssembly = Assembly.GetAssembly(typeof(TCTSDataContextInitializer));
+            var currentAssembly = Assembly.GetAssembly(typeof(TCTSDataContextInitializer));
 
             var entities = currentAssembly.GetTypes().Where(t => Attribute.IsDefined(t, typeof(InitializerAttribute)));
 
@@ -40,10 +40,5 @@ namespace DataAccess.Initializers
         }
         
         public static TCTSDataContextInitializer Instance = new TCTSDataContextInitializer();
-
-        internal IEntityInitializer this[Type type]
-        {
-            get { return EntityInitializers.First(t => t.GetType() == type); }
-        }
     }
 }

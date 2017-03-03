@@ -55,15 +55,15 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public RedirectToRouteResult Delete(int id)
         {
             BackogService.DeleteBacklogItem(id);
 
-            return Redirect("List");
+            return RedirectToAction("List");
         }
 
         [HttpPost]
-        public ActionResult Save(BacklogItemEditModel backlogItem)
+        public RedirectToRouteResult Save(BacklogItemEditModel backlogItem)
         {
             if (backlogItem.IsNew)
             {
@@ -74,7 +74,7 @@ namespace TestCaseStorage.Controllers
                 BackogService.Update(Mapper.Map<BacklogItemDto>(backlogItem));
             }
 
-            return Redirect("List");
+            return RedirectToAction("List");
         }
     }
 }

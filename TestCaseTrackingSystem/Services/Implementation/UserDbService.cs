@@ -18,8 +18,6 @@ namespace Services.Implementation
             return UnitOfWork.UserRepository.GetAllUsers().Select(ConvertToDto);
         }
 
-
-
         public UserDto GetUserById(int id)
         {
             return ConvertToDto(UnitOfWork.UserRepository.GetUserById(id));
@@ -27,17 +25,20 @@ namespace Services.Implementation
 
         public void DeleteUser(int id)
         {
-            throw new System.NotImplementedException();
+            UnitOfWork.UserRepository.RemoveById(id);
+            UnitOfWork.Save();
         }
 
         public void AddNew(UserDto user)
         {
-            throw new System.NotImplementedException();
+            UnitOfWork.UserRepository.Add(ConvertFromDto(user));
+            UnitOfWork.Save();
         }
 
         public void Update(UserDto user)
         {
-            throw new System.NotImplementedException();
+            UnitOfWork.UserRepository.Update(ConvertFromDto(user));
+            UnitOfWork.Save();
         }
 
         private static UserDto ConvertToDto(User user)
@@ -47,23 +48,28 @@ namespace Services.Implementation
                 ID = user.ID,
                 Login = user.Login,
                 Password = user.Password,
-                Role = (UserRoleEnum)user.Role.ID,
+                Role = user.Role,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                DateCreated = user.CreatedDate,
-                LastLoginDate = user.LastLogin
+                CreatedDate = user.CreatedDate,
+                LastLogin = user.LastLogin
             };
         }
 
-        private static Iteration ConvertFromDto(IterationDto dtoIteration)
+        private static User ConvertFromDto(UserDto user)
         {
-            return new Iteration
+            return new User
             {
-                ID = dtoIteration.ID,
-                Name = dtoIteration.Name,
-                StartDate = dtoIteration.StartDate,
-                EndDate = dtoIteration.EndDate
+                ID = user.ID,
+                Login = user.Login,
+                Password = user.Password,
+                Role = user.Role,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                CreatedDate = user.CreatedDate,
+                LastLogin = user.LastLogin
             };
         }
     }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCaseTrackingSystem", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C890458A-667A-4614-8504-16E7607A7940}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataAccess", "TestDataAccess\TestDataAccess.csproj", "{6111C9B8-53D2-4399-BD0A-FB1AC3200572}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{92878C7B-A7D4-4CE6-B9C3-BA82AB5E492B}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{C890458A-667A-4614-8504-16E7607A7940}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C890458A-667A-4614-8504-16E7607A7940}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C890458A-667A-4614-8504-16E7607A7940}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6111C9B8-53D2-4399-BD0A-FB1AC3200572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6111C9B8-53D2-4399-BD0A-FB1AC3200572}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6111C9B8-53D2-4399-BD0A-FB1AC3200572}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6111C9B8-53D2-4399-BD0A-FB1AC3200572}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92878C7B-A7D4-4CE6-B9C3-BA82AB5E492B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92878C7B-A7D4-4CE6-B9C3-BA82AB5E492B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92878C7B-A7D4-4CE6-B9C3-BA82AB5E492B}.Release|Any CPU.ActiveCfg = Release|Any CPU

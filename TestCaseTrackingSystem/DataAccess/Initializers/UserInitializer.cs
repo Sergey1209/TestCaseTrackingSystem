@@ -13,7 +13,7 @@ namespace DataAccess.Initializers
             new User
             {
                 ID = 1,
-                RoleID = 1,
+                Role = UserRole.Admin,
                 Login = "admin",
                 FirstName = "Admin",
                 LastName = "Admin",
@@ -24,21 +24,13 @@ namespace DataAccess.Initializers
                 Locked = false
             } 
         };
-
-        public override void InitializeData(TCTSDataContext dbContext)
-        {
-            // User roles need to be initialized prior to adding new user
-            TCTSDataContextInitializer.Instance[typeof(UserRolesInitializer)].InitializeData(dbContext);
-
-            base.InitializeData(dbContext);
-        }
-
+        
         public override void InitializeModel(DbModelBuilder modelBuilder)
         {
             var entity = modelBuilder.Entity<User>();
 
             entity.HasKey(t => t.ID).Property(t => t.ID).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            entity.Property(t => t.RoleID).IsRequired();
+            entity.Property(t => t.Role).IsRequired();
             entity.Property(t => t.Login).IsRequired();
             entity.Property(t => t.FirstName).IsRequired();
             entity.Property(t => t.LastName).IsRequired();

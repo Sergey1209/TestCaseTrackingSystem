@@ -42,15 +42,18 @@
   <ItemGroup>
     <Compile Include="DTO\BacklogItemDto.cs" />
     <Compile Include="DTO\IterationDto.cs" />
+    <Compile Include="DTO\TestCaseDto.cs" />
     <Compile Include="DTO\UserDto.cs" />
     <Compile Include="Implementation\BacklogDbService.cs" />
     <Compile Include="Implementation\IterationDbService.cs" />
     <Compile Include="Implementation\DBServiceBase.cs" />
+    <Compile Include="Implementation\TestCaseService.cs" />
     <Compile Include="Implementation\UserDbService.cs" />
     <Compile Include="Interfaces\IBacklogService.cs" />
     <Compile Include="Interfaces\IDto.cs" />
     <Compile Include="Interfaces\IIterationService.cs" />
     <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\ITestCaseService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

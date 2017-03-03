@@ -1,4 +1,6 @@
-﻿@model TestCaseStorage.Models.Iterations.Iteration
+﻿@using TestCaseStorage.Infrastructure.HtmlHelpers
+@using TestCaseStorage.Models.Iterations
+@model IterationViewModel
 
 @{
     ViewBag.Title = Model == null ? "Add New Iteration" : "Editing Iteration '" + Model.Name + "'";
@@ -7,21 +9,11 @@
 @using (Html.BeginForm("Save", "Iterations", FormMethod.Post))
 {
     @Html.HiddenFor(t => t.ID)
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.Name, new { @class = "form-control navbar-btn", placeholder = "Iteration name" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.StartDate, new { @class = "form-control navbar-btn", placeholder = "Start Date" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg">
-            @Html.TextBoxFor(t => t.EndDate, new { @class = "form-control navbar-btn", placeholder = "End Date" })
-        </div>
-    </div>
+    
+    @Html.TextBoxLineFor(t => t.Name, "Iteration Name")
+    @Html.DatePickerLineFor(t => t.StartDate, "Start Date")
+    @Html.DatePickerLineFor(t => t.EndDate, "Start Date")
+
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
             @if (Model != null)

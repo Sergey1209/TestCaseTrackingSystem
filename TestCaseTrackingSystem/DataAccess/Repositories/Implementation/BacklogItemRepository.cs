@@ -17,7 +17,6 @@ namespace DataAccess.Repositories.Implementation
         {
             return
                 TctsDataContext.BacklogItems
-                    .Include(t => t.Type)
                     .Include(t => t.AssignedTo)
                     .Include(t => t.CreatedBy)
                     .Include(t => t.Iteration);
@@ -26,7 +25,6 @@ namespace DataAccess.Repositories.Implementation
         public BacklogItem GetBacklogItemById(int id)
         {
             return TctsDataContext.BacklogItems
-                .Include(t => t.Type)
                 .Include(t => t.AssignedTo)
                 .Include(t => t.CreatedBy)
                 .Include(t => t.Iteration)

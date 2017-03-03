@@ -12,6 +12,7 @@ namespace TestCaseStorage.App_Start
                 cfg.AddProfile<IterationProfile>();
                 cfg.AddProfile<BacklogItemProfile>();
                 cfg.AddProfile<UserProfile>();
+                cfg.AddProfile<TestCaseProfile>();
             });
 
             Mapper.AssertConfigurationIsValid();

@@ -1,12 +1,8 @@
-﻿using DataAccess.Initializers;
-
-namespace DataAccess.Entities
+﻿namespace DataAccess.Entities
 {
-    [Initializer(typeof(BacklogItemTypeInitializer))]
-    public class BacklogItemType
+    public enum BacklogItemType
     {
-        public int ID { get; set; }
-        
-        public string Type { get; set; }
+        Bug = 1,
+        Story = 2
     }
 }
