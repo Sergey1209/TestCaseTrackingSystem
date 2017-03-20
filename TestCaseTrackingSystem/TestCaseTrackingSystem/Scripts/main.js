@@ -1,16 +1,21 @@
 ﻿// common startup scripts
-var Startup = Startup || {};
+var TCTS = TCTS || {}; // TCTS stands for Test Case Tracking System
 
-$.extend(Startup, {
-        ButtonConfirm: function () {
-            $("input[data-btn-confirm]").each(function () {
-                $(this).click(function() {
-                    return confirm("Are you sure?");
-                });
+TCTS.Startup = TCTS.Startup || {};
+
+$.extend(TCTS.Startup,
+{
+    ButtonConfirm: function() {
+        $("input[data-btn-delete]")
+            .each(function() {
+                $(this)
+                    .click(function() {
+                        return confirm("Are you sure?");
+                    });
             });
-        }
-    });
+    }
+});
 
 $(function() {
-    Startup.ButtonConfirm();
+    TCTS.Startup.ButtonConfirm();
 });

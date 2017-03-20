@@ -73,3 +73,9 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
