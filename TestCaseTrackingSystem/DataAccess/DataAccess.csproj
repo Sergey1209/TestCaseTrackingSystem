@@ -80,9 +80,6 @@
     <Compile Include="TCTSDataContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\CreateDatabaseScript.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
