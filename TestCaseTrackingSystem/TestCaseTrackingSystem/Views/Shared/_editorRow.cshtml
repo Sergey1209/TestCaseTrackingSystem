@@ -1,0 +1,7 @@
+﻿@* first parameter - row label, second parameter - editor cell html *@
+@model Tuple<string, MvcHtmlString> 
+
+<div class="row">
+    @Html.Partial("_labelCell", Model.Item1)
+    @Html.Partial("_editorCell", Model.Item2)
+</div>

@@ -140,6 +140,7 @@
     <Compile Include="Models\Binders\ViewModelBinderBase.cs" />
     <Compile Include="Models\Iterations\IterationViewModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
+    <Compile Include="Models\Shared\EditDeleteSectionModel.cs" />
     <Compile Include="Models\Shared\EditLineModel.cs" />
     <Compile Include="Models\Shared\InfoLineModel.cs" />
     <Compile Include="Models\TestCases\TestCaseViewModel.cs" />
@@ -248,6 +249,11 @@
     <Content Include="Views\TestCase\Edit.cshtml" />
     <Content Include="Views\TestCase\Add.cshtml" />
     <Content Include="Views\Shared\_editLine.cshtml" />
+    <Content Include="Views\Shared\_labelCell.cshtml" />
+    <Content Include="Views\Shared\_editorCell.cshtml" />
+    <Content Include="Views\Shared\_editorRow.cshtml" />
+    <Content Include="Views\Shared\_noItemsMessage.cshtml" />
+    <Content Include="Views\Shared\_editDeleteSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

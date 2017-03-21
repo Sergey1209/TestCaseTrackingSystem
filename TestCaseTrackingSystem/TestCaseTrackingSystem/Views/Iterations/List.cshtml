@@ -1,4 +1,5 @@
 ﻿@using TestCaseStorage.Models.Iterations
+@using TestCaseStorage.Models.Shared
 @model IEnumerable<IterationViewModel>
 
 @{
@@ -28,22 +29,7 @@
                 <td>@iteration.StartDate</td>
                 <td>@iteration.EndDate</td>
                 <td>
-                    <div class="col-lg-6 text-right">
-                        @using (Html.BeginForm("Edit", "Iterations", FormMethod.Get))
-                        {
-                            @Html.Hidden("iterationId", iteration.ID)
-
-                            <input class="btn btn-default btn-md" type="submit" value="Edit"/>
-                        }
-                    </div>
-                    <div class="col-lg-6">
-                        @using (Html.BeginForm("Delete", "Iterations", FormMethod.Post))
-                        {
-                            @Html.Hidden("iterationId", iteration.ID)
-
-                            <input class="btn btn-default btn-md" type="submit" value="Delete" data-btn-delete/>
-                        }
-                    </div>
+                    @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Iterations", iteration.ID))
                 </td>
             </tr>
         }
@@ -51,9 +37,7 @@
 }
 else
 {
-    <div class="row color-main no-items-message text-center">
-        There is no iterations here. Please ask your Admin to create one.
-    </div>
+    @Html.Partial("_noItemsMessage", "There is no iterations here. Please ask your Admin to create one.")
 }
 
 

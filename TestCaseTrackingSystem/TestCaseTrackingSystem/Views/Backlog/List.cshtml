@@ -1,4 +1,5 @@
 ﻿@using TestCaseStorage.Models.BacklogItems
+@using TestCaseStorage.Models.Shared
 @model IEnumerable<BacklogItemViewModel>
 
 @{
@@ -36,22 +37,7 @@
                 <td>@backlogItem.UserCreated</td>
                 <td>@backlogItem.DateCreated</td>
                 <td>
-                    <div class="col-lg-6 text-right">
-                        @using (Html.BeginForm("Edit", "Backlog", FormMethod.Get))
-                        {
-                            @Html.Hidden("id", backlogItem.ID)
-
-                            <input class="btn btn-default btn-md" type="submit" value="Edit" />
-                        }
-                    </div>
-                    <div class="col-lg-6">
-                        @using (Html.BeginForm("Delete", "Backlog", FormMethod.Post))
-                        {
-                            @Html.Hidden("id", backlogItem.ID)
-
-                            <input class="btn btn-default btn-md" type="submit" value="Delete" data-btn-delete/>
-                        }
-                    </div>
+                    @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Backlog", backlogItem.ID))
                 </td>
             </tr>
         }
@@ -59,8 +45,6 @@
 }
 else
 {
-    <div class="row color-main no-items-message text-center">
-        There is no backlog items here. Please ask your Admin to create one.
-    </div>
+    @Html.Partial("_noItemsMessage", "There is no backlog items here. Please ask your Admin to create one.")
 }
 

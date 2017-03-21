@@ -1,0 +1,19 @@
+﻿@model TestCaseStorage.Models.Shared.EditDeleteSectionModel
+
+<div class="col-lg-6 text-right">
+    @using (Html.BeginForm(Model.EditAction, Model.Controller, FormMethod.Get))
+    {
+        @Html.Hidden("id", Model.HiddenIdentifier)
+
+        <input class="btn btn-default btn-md" type="submit" value="Edit" />
+    }
+</div>
+<div class="col-lg-6">
+    @using (Html.BeginForm(Model.DeleteAction, Model.Controller, FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.HiddenIdentifier)
+
+        <input class="btn btn-default btn-md" type="submit" value="Delete" data-btn-delete />
+    }
+</div>
+

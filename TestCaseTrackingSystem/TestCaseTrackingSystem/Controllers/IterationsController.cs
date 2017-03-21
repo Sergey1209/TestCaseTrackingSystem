@@ -34,17 +34,17 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpGet]
-        public ViewResult Edit(int iterationId)
+        public ViewResult Edit(int id)
         {
-            var iterationModel = Mapper.Map<IterationViewModel>(IterationsService.GetIterationById(iterationId));
+            var iterationModel = Mapper.Map<IterationViewModel>(IterationsService.GetIterationById(id));
 
             return View("Edit", iterationModel);
         }
 
         [HttpPost]
-        public RedirectToRouteResult Delete(int iterationId)
+        public RedirectToRouteResult Delete(int id)
         {
-            IterationsService.DeleteIteration(iterationId);
+            IterationsService.DeleteIteration(id);
 
             return RedirectToAction("List");
         }
