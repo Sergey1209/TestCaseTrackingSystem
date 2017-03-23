@@ -137,10 +137,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Authentication\Identity\TCTSIdentityValidator.cs" />
-    <Compile Include="Infrastructure\Authentication\Identity\TCTSUser.cs" />
-    <Compile Include="Infrastructure\Authentication\Identity\TCTSUserManager.cs" />
-    <Compile Include="Infrastructure\Authentication\Identity\TCTSUserStore.cs" />
     <Compile Include="Infrastructure\Authentication\MembershipProvider.cs" />
     <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\HtmlHelperExtensions.cs" />
@@ -234,7 +230,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
