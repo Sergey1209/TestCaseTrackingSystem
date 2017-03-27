@@ -10,6 +10,7 @@ using TestCaseStorage.Models.Users;
 
 namespace TestCaseStorage.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private IUserService UserService { get; }

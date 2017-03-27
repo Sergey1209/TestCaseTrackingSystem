@@ -10,6 +10,7 @@ using TestCaseStorage.Models.Iterations;
 
 namespace TestCaseStorage.Controllers
 {
+    [Authorize]
     public class IterationsController : Controller
     {
         private IIterationService IterationsService { get; }

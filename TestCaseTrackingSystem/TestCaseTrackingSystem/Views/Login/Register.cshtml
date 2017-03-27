@@ -1,0 +1,25 @@
+﻿@using TestCaseStorage.Infrastructure.HtmlHelpers
+@model TestCaseStorage.Models.Users.UserViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Registration";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="container-fluid">
+        @Html.TextBoxLineFor(t => t.Login, "Login")
+        @Html.TextBoxLineFor(t => t.Password, "Password")
+        @Html.TextBoxLineFor(t => t.Email, "Email")
+        @Html.EnumDropDownLineFor(t => t.Role, "Role")
+        @Html.TextBoxLineFor(t => t.FirstName, "First Name")
+        @Html.TextBoxLineFor(t => t.LastName, "Last Name")
+
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
+                <input class="btn btn-default navbar-btn btn-lg" type="submit" value="Register"/>
+            </div>
+        </div>
+    </div>
+}

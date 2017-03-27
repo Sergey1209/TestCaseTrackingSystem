@@ -14,6 +14,7 @@ using TestCaseStorage.Models.TestCases;
 
 namespace TestCaseStorage.Controllers
 {
+    [Authorize]
     public class TestCaseController : Controller
     {
         private readonly ITestCaseService TestCaseService;

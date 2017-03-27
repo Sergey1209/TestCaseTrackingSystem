@@ -264,6 +264,7 @@
     <Content Include="Views\Shared\_editorRow.cshtml" />
     <Content Include="Views\Shared\_noItemsMessage.cshtml" />
     <Content Include="Views\Shared\_editDeleteSection.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

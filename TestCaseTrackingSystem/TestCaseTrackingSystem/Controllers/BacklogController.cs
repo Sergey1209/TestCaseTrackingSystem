@@ -12,6 +12,7 @@ using TestCaseStorage.Models.BacklogItems;
 
 namespace TestCaseStorage.Controllers
 {
+    [Authorize]
     public class BacklogController : Controller
     {
         private readonly IBacklogService BackogService;

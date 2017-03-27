@@ -2,6 +2,7 @@
 
 namespace TestCaseStorage.Controllers
 {
+    [Authorize]
     public class NavigationMenuController : Controller
     {
         public ViewResult Show()
