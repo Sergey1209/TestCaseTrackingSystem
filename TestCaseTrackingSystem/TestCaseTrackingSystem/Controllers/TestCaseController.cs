@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
 using DataAccess;
-using DataAccess.Entities;
 using DataAccess.Repositories.Implementation;
 using Services.DTO;
 using Services.Implementation;
@@ -54,26 +52,27 @@ namespace TestCaseStorage.Controllers
         {
             var testCaseViewModel = Mapper.Map<TestCaseEditViewModel>(TestCaseService.GetTestCaseById(id));
             testCaseViewModel.BacklogItems = BacklogService.GetAllBacklogItems().ToSelectList(t => t.Title, t => t.ID);
-            testCaseViewModel.Users = UserService.GetAllUsers().ToSelectList(t => t.Login, t => t.ID);
 
             return View("Edit", testCaseViewModel);
         }
 
         [HttpPost]
-        public RedirectToRouteResult Save(TestCaseEditViewModel testCase)
+        public RedirectToRouteResult AddNew(TestCaseAddViewModel testCase)
         {
-            testCase.CreatedByID = (int)Membership.GetUser(User.Identity.Name).ProviderUserKey;
-            testCase.DateCreated = DateTime.Now;
-            testCase.Status = TestCaseStatus.NotStarted;
+            var testCaseDto = Mapper.Map<TestCaseDto>(testCase);
+            testCaseDto.CreatedByID = (int) Membership.GetUser(User.Identity.Name).ProviderUserKey;
+            TestCaseService.AddNew(testCaseDto);
 
-            if (testCase.IsNew)
-            {
-                TestCaseService.AddNew(Mapper.Map<TestCaseDto>(testCase));
-            }
-            else
-            {
-                TestCaseService.Update(Mapper.Map<TestCaseDto>(testCase));
-            }
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult Update(TestCaseEditViewModel testCase)
+        {
+            var testCaseDto = Mapper.Map<TestCaseDto>(testCase);
+            testCaseDto.RunByID = (int)Membership.GetUser(User.Identity.Name).ProviderUserKey;
+
+            TestCaseService.Update(testCaseDto);
 
             return RedirectToAction("List");
         }

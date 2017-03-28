@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using DataAccess.Entities;
 
@@ -19,15 +20,19 @@ namespace TestCaseStorage.Models.TestCases
 
     public class TestCaseEditViewModel : TestCaseAddViewModel
     {
-        public int CreatedByID { get; set; }
-        public int? RunByID { get; set; }
-        public IEnumerable<SelectListItem> Users { get; set; }
+        public int ID { get; set; }
+        public TestCaseStatus Status { get; set; }
+        public DateTime DateCreated { get; set; }
+        public int CreatedById { get; set; }
     }
 
-    public class TestCaseAddViewModel : TestCaseListViewModel
+    public class TestCaseAddViewModel
     {
+        [Required]
+        public string Title { get; set; }
+        public string Description { get; set; }
+        [Range(1, Int32.MaxValue)]
+        public int BacklogItemID { get; set; }
         public IEnumerable<SelectListItem> BacklogItems { get; set; }
-
-        public bool IsNew => ID == 0;
     }
 }

@@ -7,7 +7,7 @@
 
 @section AdminTools
 {
-    @Html.ActionLink("Add", "Add", "TestCase", null, new { @class = "btn btn-success btn-md" })
+    @Html.ActionLink("Add", "AddNew", "TestCase", null, new { @class = "btn btn-success btn-md" })
 }
 
 @if (Model.Any())
@@ -25,7 +25,7 @@
         </tr>
         @foreach (var testCase in Model)
         {
-            <tr>
+            <tr onclick="location.href='@Url.Action("Edit", new { id = testCase.ID })'">
                 <td>@testCase.ID</td>
                 <td>@testCase.Title</td>
                 <td>@testCase.Description</td>

@@ -23,7 +23,7 @@
         </tr>
         @foreach (var iteration in Model)
         {
-            <tr>
+            <tr onclick="location.href='@Url.Action("Edit", new { id = iteration.ID })'">
                 <td>@iteration.ID</td>
                 <td>@iteration.Name</td>
                 <td>@iteration.StartDate</td>

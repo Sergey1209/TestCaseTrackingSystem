@@ -10,7 +10,7 @@ $.extend(TCTS.Startup,
             .each(function() {
                 $(this)
                     .click(function() {
-                        return confirm("Are you sure?");
+                        return confirm("You are about to delete an iteration. Are you sure?");
                     });
             });
     }

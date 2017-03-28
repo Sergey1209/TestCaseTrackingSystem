@@ -5,10 +5,8 @@
     ViewBag.Title = "Add New Test Case";
 }
 
-@using (Html.BeginForm("Save", "TestCase", FormMethod.Post))
+@using (Html.BeginForm("AddNew", "TestCase", FormMethod.Post))
 {
-    @Html.HiddenFor(t => t.ID)
-
     @Html.TextBoxLineFor(t => t.Title, "Title")
     @Html.TextBoxLineFor(t => t.Description, "Description")
     @Html.DropDownListLineFor(t => t.BacklogItemID, Model.BacklogItems, "Backlog Item")

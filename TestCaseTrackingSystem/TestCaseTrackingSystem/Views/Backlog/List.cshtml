@@ -27,7 +27,7 @@
         </tr>
         @foreach (var backlogItem in Model)
         {
-            <tr>
+            <tr onclick="location.href='@Url.Action("Edit", new { id = backlogItem.ID })'">
                 <td>@backlogItem.ID</td>
                 <td>@backlogItem.Title</td>
                 <td>@backlogItem.Description</td>
