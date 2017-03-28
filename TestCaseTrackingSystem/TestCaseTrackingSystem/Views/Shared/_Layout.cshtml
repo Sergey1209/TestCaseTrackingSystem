@@ -19,8 +19,15 @@
             <div class="panel panel-default full-height body-panel">
                 <div class="panel-heading body-title color-main">
                     <div class="row">
-                        <div class="col-lg-6">@ViewBag.Title</div>
-                        <div class="col-lg-6 text-right">@RenderSection("AdminTools", false)</div>
+                        @{
+                            var titleSize = User.Identity.IsAuthenticated ? 6 : 12;
+                            var titleLocation = User.Identity.IsAuthenticated ? "right" : "center";
+                        }
+                        <div class="col-lg-@titleSize text-@titleLocation">@ViewBag.Title</div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="col-lg-6 text-right">@RenderSection("AdminTools", false)</div>
+                        }
                     </div>
                 </div>
                 <div class="panel-body">

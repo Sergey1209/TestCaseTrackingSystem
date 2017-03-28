@@ -2,7 +2,7 @@
 @model TestCaseStorage.Models.BacklogItems.BacklogItemEditModel
 
 @{
-    ViewBag.Title = "Editing Backlog Item '";
+    ViewBag.Title = "Editing Backlog Item '" + Model.Title + "'";
 }
 
 @using (Html.BeginForm("Update", "Backlog", FormMethod.Post))

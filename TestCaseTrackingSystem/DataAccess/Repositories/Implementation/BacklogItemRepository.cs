@@ -30,12 +30,5 @@ namespace DataAccess.Repositories.Implementation
                 .Include(t => t.Iteration)
                 .First(t => t.ID == id);
         }
-
-        public override void Update(BacklogItem entity)
-        {
-            base.Update(entity);
-
-            Context.Entry(entity).Property(t => t.CreatedByID).IsModified = false;
-        }
     }
 }
