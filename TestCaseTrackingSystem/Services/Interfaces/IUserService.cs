@@ -10,5 +10,6 @@ namespace Services.Interfaces
         void DeleteUser(int id);
         void AddNew(UserDto user);
         void Update(UserDto user);
+        void UpdateLastLoginDate(string login);
     }
 }

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AutoMapper;
 using DataAccess;
+using DataAccess.Entities;
 using DataAccess.Repositories.Implementation;
 using Services.DTO;
 using Services.Implementation;
@@ -23,6 +24,7 @@ namespace TestCaseStorage.Controllers
         [HttpGet]
         public ViewResult List()
         {
+            ViewBag.DisableAdd = !User.IsInRole(UserRole.Admin.ToString());
             var usersListModel = Mapper.Map<IEnumerable<UserViewModel>>(UserService.GetAllUsers());
 
             return View("List", usersListModel);

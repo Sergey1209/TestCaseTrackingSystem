@@ -138,6 +138,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Authentication\MembershipProvider.cs" />
+    <Compile Include="Infrastructure\Authentication\RoleProvider.cs" />
     <Compile Include="Infrastructure\Extensions\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\AutoMapper\BacklogItemProfile.cs" />
@@ -266,6 +267,8 @@
     <Content Include="Views\Shared\_noItemsMessage.cshtml" />
     <Content Include="Views\Shared\_editDeleteSection.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Iterations\Add.cshtml" />
+    <Content Include="Views\Backlog\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

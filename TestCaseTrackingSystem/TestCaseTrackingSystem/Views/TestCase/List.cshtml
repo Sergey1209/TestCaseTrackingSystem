@@ -7,7 +7,23 @@
 
 @section AdminTools
 {
-    @Html.ActionLink("Add", "AddNew", "TestCase", null, new { @class = "btn btn-success btn-md" })
+    @{
+        var disabledAttributes = new
+        {
+            @class = "btn btn-success btn-md",
+            disabled = "true",
+            title = ViewBag.IsNotQA ? "Only users with QA role can add/edit/delete test cases" : "There is no backlog items that you can add test case to. Please first add backlog item."
+        };
+        var activeAttributes = new
+        {
+            @class = "btn btn-success btn-md"
+        };
+
+        var attributes = ViewBag.DisableAdd ? (object)disabledAttributes : (object)activeAttributes;
+    }
+    
+
+    @Html.ActionLink("Add", "Add", "TestCase", null, attributes)
 }
 
 @if (Model.Any())
@@ -34,7 +50,10 @@
                 <td>@testCase.RunBy</td>
                 <td>@testCase.Status.ToString()</td>
                 <td>
-                    @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("TestCase", testCase.ID))
+                    @if (!ViewBag.DisableAdd)
+                    {
+                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("TestCase", testCase.ID))
+                    }
                 </td>
             </tr>
         }

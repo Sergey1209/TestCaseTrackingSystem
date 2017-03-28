@@ -11,5 +11,7 @@ namespace Services.Implementation
         {
             UnitOfWork = unitOfWork;
         }
+
+        public abstract bool HasAny();
     }
 }

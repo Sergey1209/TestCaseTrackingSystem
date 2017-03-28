@@ -7,7 +7,22 @@
 
 @section AdminTools
 {
-    @Html.ActionLink("Add", "Add", "User", null, new { @class = "btn btn-success btn-md" })
+    @{
+        var disabledAttributes = new
+        {
+            @class = "btn btn-success btn-md",
+            disabled = "true",
+            title = "Only users with Admin role can add/edit/delete iterations"
+        };
+        var activeAttributes = new
+        {
+            @class = "btn btn-success btn-md"
+        };
+
+        var attributes = ViewBag.DisableAdd ? (object)disabledAttributes : (object)activeAttributes;
+    }
+
+    @Html.ActionLink("Add", "Add", "User", null, attributes)
 }
 
 @if (Model.Any())
@@ -26,7 +41,8 @@
         </tr>
         @foreach (var user in Model)
         {
-            <tr onclick="location.href='@Url.Action("Edit", new { id = user.ID })'">
+            var editHtml = ViewBag.DisableAdd ? string.Empty : "onclick=\"location.href = '" + Url.Action("Edit", new { id = user.ID }) + "'\"";
+            <tr @Html.Raw(editHtml)>
                 <td>@user.ID</td>
                 <td>@user.Login</td>
                 <td>@user.Role</td>
@@ -36,7 +52,10 @@
                 <td>@user.CreatedDate</td>
                 <td>@user.LastLogin</td>
                 <td>
-                    @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("User", user.ID))
+                    @if (!ViewBag.DisableAdd)
+                    {
+                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("User", user.ID))
+                    }
                 </td>
             </tr>
         }

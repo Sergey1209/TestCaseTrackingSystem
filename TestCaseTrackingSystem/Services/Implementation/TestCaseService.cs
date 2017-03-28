@@ -41,6 +41,11 @@ namespace Services.Implementation
             UnitOfWork.Save();
         }
 
+        public override bool HasAny()
+        {
+            return UnitOfWork.TestCaseRepository.HasAny();
+        }
+
         private static TestCaseDto ConvertToDto(TestCase testCase)
         {
             return new TestCaseDto

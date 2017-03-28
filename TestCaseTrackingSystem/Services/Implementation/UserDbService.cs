@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Entities;
 using DataAccess.Repositories.Interfaces;
@@ -47,6 +48,17 @@ namespace Services.Implementation
         {
             UnitOfWork.UserRepository.Update(ConvertFromDto(user));
             UnitOfWork.Save();
+        }
+
+        public void UpdateLastLoginDate(string login)
+        {
+            UnitOfWork.UserRepository.GetUserByLogin(login).LastLogin = DateTime.Now;
+            UnitOfWork.Save();
+        }
+
+        public override bool HasAny()
+        {
+            return UnitOfWork.UserRepository.HasAny();
         }
 
         private static UserDto ConvertToDto(User user)

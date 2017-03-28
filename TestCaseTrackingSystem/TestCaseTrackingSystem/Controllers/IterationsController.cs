@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AutoMapper;
 using DataAccess;
+using DataAccess.Entities;
 using DataAccess.Repositories.Implementation;
 using Services.DTO;
 using Services.Implementation;
@@ -23,6 +24,8 @@ namespace TestCaseStorage.Controllers
         [HttpGet]
         public ViewResult List()
         {
+            ViewBag.DisableAdd = !User.IsInRole(UserRole.Admin.ToString());
+
             var iterationsListModel = Mapper.Map<IEnumerable<IterationViewModel>>(IterationsService.GetAllIterations());
 
             return View("List", iterationsListModel);
@@ -31,7 +34,7 @@ namespace TestCaseStorage.Controllers
         [HttpGet]
         public ViewResult Add()
         {
-            return View("Edit");
+            return View("Add");
         }
 
         [HttpGet]
@@ -51,16 +54,17 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult Save(IterationViewModel iteration)
+        public RedirectToRouteResult Update(IterationViewModel iteration)
         {
-            if (iteration.IsNew)
-            {
-                IterationsService.AddNew(Mapper.Map<IterationDto>(iteration));
-            }
-            else
-            {
-                IterationsService.Update(Mapper.Map<IterationDto>(iteration));
-            }
+            IterationsService.Update(Mapper.Map<IterationDto>(iteration));
+
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public ActionResult AddNew(IterationViewModel iteration)
+        {
+            IterationsService.AddNew(Mapper.Map<IterationDto>(iteration));
 
             return RedirectToAction("List");
         }

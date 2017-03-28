@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
 using DataAccess;
+using DataAccess.Entities;
 using DataAccess.Repositories.Implementation;
 using Services.DTO;
 using Services.Implementation;
@@ -31,6 +32,8 @@ namespace TestCaseStorage.Controllers
         [HttpGet]
         public ViewResult List()
         {
+            ViewBag.DisableAdd = !BacklogService.HasAny() || !User.IsInRole(UserRole.QA.ToString());
+            ViewBag.IsNotQA = !User.IsInRole(UserRole.QA.ToString());
             var testCasesListModel = Mapper.Map<IEnumerable<TestCaseListViewModel>>(TestCaseService.GetAllTestCases());
 
             return View("List", testCasesListModel);

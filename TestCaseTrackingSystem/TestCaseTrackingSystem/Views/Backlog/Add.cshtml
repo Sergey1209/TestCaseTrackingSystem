@@ -2,10 +2,10 @@
 @model TestCaseStorage.Models.BacklogItems.BacklogItemEditModel
 
 @{
-    ViewBag.Title = "Editing Backlog Item '";
+    ViewBag.Title = "Add New Backlog Item";
 }
 
-@using (Html.BeginForm("Update", "Backlog", FormMethod.Post))
+@using (Html.BeginForm("AddNew", "Backlog", FormMethod.Post))
 {
     @Html.HiddenFor(t => t.ID)
     @Html.HiddenFor(t => t.UserCreatedId)

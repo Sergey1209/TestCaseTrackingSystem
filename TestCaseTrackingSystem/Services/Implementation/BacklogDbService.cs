@@ -41,6 +41,11 @@ namespace Services.Implementation
             UnitOfWork.Save();
         }
 
+        public override bool HasAny()
+        {
+            return UnitOfWork.BacklogItemRepository.HasAny();
+        }
+
         private static BacklogItemDto ConvertToDto(BacklogItem backlog)
         {
             return new BacklogItemDto

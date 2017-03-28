@@ -8,7 +8,22 @@
 
 @section AdminTools
 {
-    @Html.ActionLink("Add", "Add", "Iterations", null, new { @class = "btn btn-success btn-md" })
+    @{
+        var disabledAttributes = new
+        {
+            @class = "btn btn-success btn-md",
+            disabled = "true",
+            title = "Only users with Admin role can add/edit/delete iterations"
+        };
+        var activeAttributes = new
+        {
+            @class = "btn btn-success btn-md"
+        };
+
+        var attributes = ViewBag.DisableAdd ? (object)disabledAttributes : (object)activeAttributes;
+    }
+
+    @Html.ActionLink("Add", "Add", "Iterations", null, attributes)
 }
 
 @if (Model.Any())
@@ -23,13 +38,17 @@
         </tr>
         @foreach (var iteration in Model)
         {
-            <tr onclick="location.href='@Url.Action("Edit", new { id = iteration.ID })'">
+            var editHtml = ViewBag.DisableAdd ? string.Empty : "onclick=\"location.href = '" + Url.Action("Edit", new { id = iteration.ID }) + "'\"";
+            <tr @Html.Raw(editHtml)>
                 <td>@iteration.ID</td>
                 <td>@iteration.Name</td>
                 <td>@iteration.StartDate</td>
                 <td>@iteration.EndDate</td>
                 <td>
-                    @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Iterations", iteration.ID))
+                    @if (!ViewBag.DisableAdd)
+                    {
+                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Iterations", iteration.ID))
+                    }
                 </td>
             </tr>
         }

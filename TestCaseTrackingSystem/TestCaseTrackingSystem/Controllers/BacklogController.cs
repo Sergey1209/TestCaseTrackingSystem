@@ -42,7 +42,7 @@ namespace TestCaseStorage.Controllers
             editModel.Users = UserService.GetAllUsers().ToSelectList(t => t.Login, t => t.ID);
             editModel.UserCreatedId = (int)Membership.GetUser(User.Identity.Name).ProviderUserKey;
 
-            return View("Edit", editModel);
+            return View("Add", editModel);
         }
 
         [HttpGet]
@@ -64,16 +64,17 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult Save(BacklogItemEditModel backlogItem)
+        public RedirectToRouteResult Update(BacklogItemEditModel backlogItem)
         {
-            if (backlogItem.IsNew)
-            {
-                BackogService.AddNew(Mapper.Map<BacklogItemDto>(backlogItem));
-            }
-            else
-            {
-                BackogService.Update(Mapper.Map<BacklogItemDto>(backlogItem));
-            }
+            BackogService.Update(Mapper.Map<BacklogItemDto>(backlogItem));
+
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public ActionResult AddNew(BacklogItemEditModel backlogItem)
+        {
+            BackogService.AddNew(Mapper.Map<BacklogItemDto>(backlogItem));
 
             return RedirectToAction("List");
         }

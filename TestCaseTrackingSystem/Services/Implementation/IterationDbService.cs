@@ -25,7 +25,7 @@ namespace Services.Implementation
 
         public void DeleteIteration(int id)
         {
-            UnitOfWork.IterationRepository.RemoveById(id);
+            UnitOfWork.IterationRepository.RemoveIterationById(id);
             UnitOfWork.Save();
         }
 
@@ -39,6 +39,11 @@ namespace Services.Implementation
         {
             UnitOfWork.IterationRepository.Update(ConvertFromDto(iteration));
             UnitOfWork.Save();
+        }
+
+        public override bool HasAny()
+        {
+            return UnitOfWork.IterationRepository.HasAny();
         }
 
         private static IterationDto ConvertToDto(Iteration iteration)

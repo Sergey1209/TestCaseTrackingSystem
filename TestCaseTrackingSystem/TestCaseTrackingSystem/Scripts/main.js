@@ -13,9 +13,17 @@ $.extend(TCTS.Startup,
                         return confirm("You are about to delete an iteration. Are you sure?");
                     });
             });
+    },
+    DisableLinks: function() {
+        $("a[disabled=true]").each(function() {
+            $(this).click(function(e) {
+                e.preventDefault();
+            });
+        });
     }
 });
 
 $(function() {
     TCTS.Startup.ButtonConfirm();
+    TCTS.Startup.DisableLinks();
 });

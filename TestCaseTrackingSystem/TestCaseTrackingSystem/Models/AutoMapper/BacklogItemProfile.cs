@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Services.DTO;
 using TestCaseStorage.Models.BacklogItems;
 
@@ -12,7 +13,8 @@ namespace TestCaseStorage.Models.AutoMapper
             CreateMap<BacklogItemDto, BacklogItemEditModel>()
                 .ForMember(t => t.Iterations, t => t.Ignore())
                 .ForMember(t => t.Users, t => t.Ignore());
-            CreateMap<BacklogItemEditModel, BacklogItemDto>();
+            CreateMap<BacklogItemEditModel, BacklogItemDto>()
+                .ForMember(t => t.DateCreated, t => t.UseValue(DateTime.Now));
         }
     }
 }

@@ -18,5 +18,7 @@ namespace DataAccess.Repositories.Interfaces
         void RemoveRange(IEnumerable<TEntity> entities);
 
         void Update(TEntity entity);
+
+        bool HasAny();
     }
 }

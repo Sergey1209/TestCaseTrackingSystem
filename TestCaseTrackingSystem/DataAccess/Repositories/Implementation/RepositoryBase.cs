@@ -69,5 +69,10 @@ namespace DataAccess.Repositories.Implementation
             var entry = Context.Entry(entity);
             entry.State = EntityState.Modified;
         }
+
+        public bool HasAny()
+        {
+            return Context.Set<TEntity>().Any();
+        }
     }
 }

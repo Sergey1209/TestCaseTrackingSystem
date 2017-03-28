@@ -36,6 +36,8 @@ namespace TestCaseStorage.Controllers
             {
                 FormsAuthentication.SetAuthCookie(loginModel.Login, true);
 
+                UserService.UpdateLastLoginDate(loginModel.Login);
+
                 return RedirectToAction("Index", "Home");
             }
 

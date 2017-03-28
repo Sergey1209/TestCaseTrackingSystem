@@ -2,6 +2,6 @@
 {
     public interface IService<T> where T : IDto
     {
-        
+        bool HasAny();
     }
 }
