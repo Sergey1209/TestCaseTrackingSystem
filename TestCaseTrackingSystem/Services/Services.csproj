@@ -44,6 +44,7 @@
     <Compile Include="DTO\IterationDto.cs" />
     <Compile Include="DTO\TestCaseDto.cs" />
     <Compile Include="DTO\UserDto.cs" />
+    <Compile Include="Exceptions\DuplicateUserException.cs" />
     <Compile Include="Implementation\BacklogDbService.cs" />
     <Compile Include="Implementation\IterationDbService.cs" />
     <Compile Include="Implementation\DBServiceBase.cs" />

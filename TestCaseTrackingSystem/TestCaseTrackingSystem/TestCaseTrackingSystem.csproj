@@ -148,6 +148,7 @@
     <Compile Include="Models\Binders\ViewModelBinderBase.cs" />
     <Compile Include="Models\Iterations\IterationViewModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
+    <Compile Include="Models\Login\RegisterViewModel.cs" />
     <Compile Include="Models\Shared\EditDeleteSectionModel.cs" />
     <Compile Include="Models\Shared\EditLineModel.cs" />
     <Compile Include="Models\Shared\InfoLineModel.cs" />

@@ -3,6 +3,7 @@ using System.Linq;
 using DataAccess.Entities;
 using DataAccess.Repositories.Interfaces;
 using Services.DTO;
+using Services.Exceptions;
 using Services.Interfaces;
 
 namespace Services.Implementation
@@ -31,8 +32,15 @@ namespace Services.Implementation
 
         public void AddNew(UserDto user)
         {
-            UnitOfWork.UserRepository.Add(ConvertFromDto(user));
-            UnitOfWork.Save();
+            if (UnitOfWork.UserRepository.GetUserByLogin(user.Login) == null)
+            {
+                UnitOfWork.UserRepository.Add(ConvertFromDto(user));
+                UnitOfWork.Save();
+            }
+            else
+            {
+                throw new DuplicateUserException();
+            }
         }
 
         public void Update(UserDto user)

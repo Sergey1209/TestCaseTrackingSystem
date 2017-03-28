@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using Services.DTO;
+using TestCaseStorage.Models.Login;
 using TestCaseStorage.Models.Users;
 
 namespace TestCaseStorage.Models.AutoMapper
@@ -11,6 +12,10 @@ namespace TestCaseStorage.Models.AutoMapper
         {
             CreateMap<UserDto, UserViewModel>();
             CreateMap<UserViewModel, UserDto>().ForMember(t => t.CreatedDate, t => t.UseValue(DateTime.Now));
+            CreateMap<RegisterViewModel, UserDto>()
+                .ForMember(t => t.CreatedDate, t => t.UseValue(DateTime.Now))
+                .ForMember(t => t.ID, t => t.Ignore())
+                .ForMember(t => t.LastLogin, t => t.Ignore());
         }
     }
 }

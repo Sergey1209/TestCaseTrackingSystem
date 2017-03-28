@@ -79,3 +79,9 @@
     border: 1px solid #ff0000;
     background-color: #ffeeee;
 }
+
+.message-error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
 using DataAccess;
 using DataAccess.Repositories.Implementation;
 using Services.DTO;
+using Services.Exceptions;
 using Services.Implementation;
 using Services.Interfaces;
 using TestCaseStorage.Models.Login;
-using TestCaseStorage.Models.Users;
 
 namespace TestCaseStorage.Controllers
 {
@@ -53,14 +52,14 @@ namespace TestCaseStorage.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register(string[] errorMessages = null)
         {
-            return View("Register");
+            return View("Register", new RegisterViewModel {ErrorMessages = errorMessages});
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Register(UserViewModel user)
+        public ActionResult Register(RegisterViewModel user)
         {
             try
             {
@@ -68,9 +67,9 @@ namespace TestCaseStorage.Controllers
 
                 return Login(new LoginModel {Login = user.Login, Password = user.Password});
             }
-            catch (Exception)
+            catch (DuplicateUserException exception)
             {
-                return RedirectToAction("Login");
+                return Register(new []{exception.Message});
             }
         }
     }
