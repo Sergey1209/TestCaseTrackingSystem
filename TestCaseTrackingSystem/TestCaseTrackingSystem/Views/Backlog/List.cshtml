@@ -37,7 +37,7 @@
                 <td>@backlogItem.UserCreated</td>
                 <td>@backlogItem.DateCreated</td>
                 <td>
-                    @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Backlog", backlogItem.ID))
+                    @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Backlog", "Backlog item", backlogItem.ID))
                 </td>
             </tr>
         }

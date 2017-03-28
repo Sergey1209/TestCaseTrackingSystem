@@ -10,8 +10,10 @@ namespace TestCaseStorage.Models.AutoMapper
     {
         public UserProfile()
         {
-            CreateMap<UserDto, UserViewModel>();
-            CreateMap<UserViewModel, UserDto>().ForMember(t => t.CreatedDate, t => t.UseValue(DateTime.Now));
+            CreateMap<UserDto, UserViewModel>()
+                .ForMember(t => t.ErrorMessages, t => t.Ignore());
+            CreateMap<UserViewModel, UserDto>()
+                .ForMember(t => t.CreatedDate, t => t.UseValue(DateTime.Now));
             CreateMap<RegisterViewModel, UserDto>()
                 .ForMember(t => t.CreatedDate, t => t.UseValue(DateTime.Now))
                 .ForMember(t => t.ID, t => t.Ignore())

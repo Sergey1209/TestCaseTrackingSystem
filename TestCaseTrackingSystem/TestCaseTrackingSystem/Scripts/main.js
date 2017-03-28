@@ -6,11 +6,12 @@ TCTS.Startup = TCTS.Startup || {};
 $.extend(TCTS.Startup,
 {
     ButtonConfirm: function() {
-        $("input[data-btn-delete]")
-            .each(function() {
+        $("input[data-delete-item-name]")
+            .each(function () {
+                var deleteItemName = $(this).attr("data-delete-item-name");
                 $(this)
                     .click(function() {
-                        return confirm("You are about to delete an iteration. Are you sure?");
+                        return confirm("You are about to delete " + deleteItemName + ". Are you sure?");
                     });
             });
     },

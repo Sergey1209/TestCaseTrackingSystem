@@ -27,6 +27,13 @@ namespace DataAccess.Repositories.Implementation
             return TctsDataContext.Users.FirstOrDefault(t => t.Login == login);
         }
 
+        public void RemoveUserById(int id)
+        {
+            TctsDataContext.TestCases.Where(t => t.CreatedByID == id || t.RunByID == id).Load();
+            TctsDataContext.BacklogItems.Where(t => t.CreatedByID == id || t.AssignedToID == id).Load();
+            TctsDataContext.Users.Remove(TctsDataContext.Users.Find(id));
+        }
+
         private TCTSDataContext TctsDataContext => (TCTSDataContext)Context;
     }
 }

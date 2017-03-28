@@ -8,5 +8,6 @@ namespace DataAccess.Repositories.Interfaces
         IEnumerable<User> GetAllUsers();
         User GetUserById(int id);
         User GetUserByLogin(string login);
+        void RemoveUserById(int id);
     }
 }

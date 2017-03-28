@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using DataAccess.Entities;
 
 namespace TestCaseStorage.Models.Users
 {
     public class UserViewModel
     {
+        public IEnumerable<string> ErrorMessages { get; set; }
         public int ID { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }

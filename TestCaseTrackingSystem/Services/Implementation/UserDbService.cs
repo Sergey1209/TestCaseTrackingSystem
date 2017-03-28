@@ -27,7 +27,7 @@ namespace Services.Implementation
 
         public void DeleteUser(int id)
         {
-            UnitOfWork.UserRepository.RemoveById(id);
+            UnitOfWork.UserRepository.RemoveUserById(id);
             UnitOfWork.Save();
         }
 

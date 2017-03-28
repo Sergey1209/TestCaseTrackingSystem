@@ -1,6 +1,6 @@
 ﻿@model TestCaseStorage.Models.Shared.EditDeleteSectionModel
 
-<div class="col-lg-6 text-right">
+<div class="col-lg-offset-6 col-lg-3 text-center">
     @using (Html.BeginForm(Model.EditAction, Model.Controller, FormMethod.Get))
     {
         @Html.Hidden("id", Model.HiddenIdentifier)
@@ -8,12 +8,12 @@
         <input class="btn btn-default btn-md" type="submit" value="Edit" />
     }
 </div>
-<div class="col-lg-6">
+<div class="col-lg-3 text-center">
     @using (Html.BeginForm(Model.DeleteAction, Model.Controller, FormMethod.Post))
     {
         @Html.Hidden("id", Model.HiddenIdentifier)
 
-        <input class="btn btn-default btn-md" type="submit" value="Delete" data-btn-delete />
+        <input class="btn btn-default btn-md" type="submit" value="Delete" data-delete-item-name="@Model.DeleteItemName" />
     }
 </div>
 

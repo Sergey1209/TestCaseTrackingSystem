@@ -47,7 +47,7 @@
                 <td>
                     @if (!ViewBag.DisableAdd)
                     {
-                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Iterations", iteration.ID))
+                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("Iterations", "Iteration", iteration.ID))
                     }
                 </td>
             </tr>

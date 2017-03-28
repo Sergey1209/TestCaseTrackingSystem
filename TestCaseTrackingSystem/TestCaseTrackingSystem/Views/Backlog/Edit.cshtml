@@ -2,7 +2,7 @@
 @model TestCaseStorage.Models.BacklogItems.BacklogItemEditModel
 
 @{
-    ViewBag.Title = "Editing Backlog Item '" + Model.Title + "'";
+    ViewBag.Title = "Editing Backlog Item - " + Model.Title;
 }
 
 @using (Html.BeginForm("Update", "Backlog", FormMethod.Post))
@@ -22,7 +22,7 @@
             {
                 @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width" })
             }
-            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value='@(Model == null || Model.ID == 0 ? "Add" : "Update")' />
+            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value="Update" />
         </div>
     </div>
 }

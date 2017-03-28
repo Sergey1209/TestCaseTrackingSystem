@@ -2,7 +2,7 @@
 @model TestCaseStorage.Models.TestCases.TestCaseEditViewModel
 
 @{
-    ViewBag.Title = "Add New Test Case";
+    ViewBag.Title = "Updating Test Case - " + Model.Title;
 }
 
 @using (Html.BeginForm("Update", "TestCase", FormMethod.Post))

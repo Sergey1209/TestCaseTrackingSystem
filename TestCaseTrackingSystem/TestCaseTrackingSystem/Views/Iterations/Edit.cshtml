@@ -3,7 +3,7 @@
 @model IterationViewModel
 
 @{
-    ViewBag.Title = "Editing Iteration '" + Model.Name + "'";
+    ViewBag.Title = "Editing Iteration - " + Model.Name;
 }
 
 @using (Html.BeginForm("Update", "Iterations", FormMethod.Post))
@@ -20,7 +20,7 @@
             {
                 @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width" })
             }
-            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value='Update'/>
+            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value="Update"/>
         </div>
     </div>
 }

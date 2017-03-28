@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using DataAccess;
 using DataAccess.Entities;
 using DataAccess.Repositories.Implementation;
 using Services.DTO;
+using Services.Exceptions;
 using Services.Implementation;
 using Services.Interfaces;
 using TestCaseStorage.Models.Users;
@@ -39,9 +41,9 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpGet]
-        public ViewResult Add()
+        public ViewResult Add(string[] errorMessages = null)
         {
-            return View("Edit");
+            return View("Add", new UserViewModel {ErrorMessages = errorMessages});
         }
 
         [HttpGet]
@@ -53,16 +55,9 @@ namespace TestCaseStorage.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult Save(UserViewModel user)
+        public RedirectToRouteResult Update(UserViewModel user)
         {
-            if (user.IsNew)
-            {
-                UserService.AddNew(Mapper.Map<UserDto>(user));
-            }
-            else
-            {
-                UserService.Update(Mapper.Map<UserDto>(user));
-            }
+            UserService.Update(Mapper.Map<UserDto>(user));
 
             return RedirectToAction("List");
         }
@@ -73,6 +68,21 @@ namespace TestCaseStorage.Controllers
             UserService.DeleteUser(id);
 
             return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public ActionResult AddNew(UserViewModel user)
+        {
+            try
+            {
+                UserService.AddNew(Mapper.Map<UserDto>(user));
+
+                return RedirectToAction("List");
+            }
+            catch (DuplicateUserException exception)
+            {
+                return Add(new[] { exception.Message });
+            }
         }
     }
 }

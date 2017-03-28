@@ -2,14 +2,16 @@
 {
     public class EditDeleteSectionModel
     {
-        public EditDeleteSectionModel(string controller, object hiddenIdentifier, string editAction = "Edit", string deleteAction = "Delete")
+        public EditDeleteSectionModel(string controller, string deleteItemName, object hiddenIdentifier, string editAction = "Edit", string deleteAction = "Delete")
         {
             Controller = controller;
+            DeleteItemName = deleteItemName;
             HiddenIdentifier = hiddenIdentifier;
             EditAction = editAction;
             DeleteAction = deleteAction;
         }
 
+        public string DeleteItemName { get; set; }
         public string Controller { get; set; }
         public string EditAction { get; set; }
         public string DeleteAction { get; set; }
