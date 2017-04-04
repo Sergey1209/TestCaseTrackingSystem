@@ -18,8 +18,7 @@ namespace DataAccess.Repositories.Implementation
             return
                 TctsDataContext.BacklogItems
                     .Include(t => t.AssignedTo)
-                    .Include(t => t.CreatedBy)
-                    .Include(t => t.Iteration);
+                    .Include(t => t.CreatedBy);
         }
 
         public BacklogItem GetBacklogItemById(int id)
@@ -27,7 +26,6 @@ namespace DataAccess.Repositories.Implementation
             return TctsDataContext.BacklogItems
                 .Include(t => t.AssignedTo)
                 .Include(t => t.CreatedBy)
-                .Include(t => t.Iteration)
                 .First(t => t.ID == id);
         }
     }

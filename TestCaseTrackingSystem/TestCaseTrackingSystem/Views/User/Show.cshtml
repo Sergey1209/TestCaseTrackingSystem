@@ -2,14 +2,14 @@
 @model TestCaseStorage.Models.Users.UserViewModel
 
 @{
-    ViewBag.Title = "Profile: " + Model.Login;
+    ViewBag.Title = "Профиль: " + Model.Login;
 }
 
 @{
-    Html.RenderPartial("_infoLine", new InfoLineModel("Login", Model.Login));
-    Html.RenderPartial("_infoLine", new InfoLineModel("Role", Model.Role.ToString()));
-    Html.RenderPartial("_infoLine", new InfoLineModel("First Name", Model.FirstName));
-    Html.RenderPartial("_infoLine", new InfoLineModel("Last Name", Model.LastName));
-    Html.RenderPartial("_infoLine", new InfoLineModel("Email", Model.Email));
-    Html.RenderPartial("_infoLine", new InfoLineModel("Date Created", Model.CreatedDate.ToString()));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Логин", Model.Login));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Роль", Model.Role.ToString()));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Имя", Model.FirstName));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Фамилия", Model.LastName));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Почта", Model.Email));
+    Html.RenderPartial("_infoLine", new InfoLineModel("Дата Создания", Model.CreatedDate.ToString()));
 }

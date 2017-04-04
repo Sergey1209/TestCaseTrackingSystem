@@ -69,9 +69,11 @@ namespace Services.Implementation
                 Login = user.Login,
                 Password = user.Password,
                 Role = user.Role,
+                Position = user.Position,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                Skype = user.Skype,
                 CreatedDate = user.CreatedDate,
                 LastLogin = user.LastLogin
             };
@@ -85,9 +87,11 @@ namespace Services.Implementation
                 Login = user.Login,
                 Password = user.Password,
                 Role = user.Role,
+                Position = user.Position,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                Skype = user.Skype,
                 CreatedDate = user.CreatedDate,
                 LastLogin = user.LastLogin
             };

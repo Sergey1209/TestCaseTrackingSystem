@@ -8,23 +8,16 @@ namespace DataAccess.Entities
     public class User
     {
         public int ID { get; set; }
-        
         public UserRole Role { get; set; }
-        
+        public Position? Position { get; set; }
         public string Login { get; set; }
-        
         public string FirstName { get; set; }
-        
         public string LastName { get; set; }
-        
         public string Email { get; set; }
-        
+        public string Skype { get; set; }
         public string Password { get; set; }
-
         public DateTime? LastLogin { get; set; }
-        
         public DateTime CreatedDate { get; set; }
-        
         public bool Locked { get; set; }
         
         

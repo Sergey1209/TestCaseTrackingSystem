@@ -31,6 +31,7 @@ namespace DataAccess.Initializers
 
             entity.HasKey(t => t.ID).Property(t => t.ID).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             entity.Property(t => t.Role).IsRequired();
+            entity.Property(t => t.Position).IsOptional();
             entity.Property(t => t.Login).IsRequired();
             entity.Property(t => t.FirstName).IsRequired();
             entity.Property(t => t.LastName).IsRequired();

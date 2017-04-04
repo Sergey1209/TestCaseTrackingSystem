@@ -56,8 +56,6 @@ namespace Services.Implementation
                 AssignedToUserID = backlog.AssignedToID,
                 AssignedTo = backlog.AssignedTo.Login,
                 DateCreated = backlog.DateCreated,
-                IterationID = backlog.Iteration?.ID,
-                Iteration = backlog.Iteration?.Name,
                 Type = backlog.Type,
                 UserCreatedID = backlog.CreatedByID,
                 UserCreated = backlog.CreatedBy.Login
@@ -73,7 +71,6 @@ namespace Services.Implementation
                 Description = backlogItemDto.Description,
                 AssignedToID = backlogItemDto.AssignedToUserID,
                 DateCreated = backlogItemDto.DateCreated,
-                IterationID = backlogItemDto.IterationID,
                 Type = backlogItemDto.Type,
                 CreatedByID = backlogItemDto.UserCreatedID
             };

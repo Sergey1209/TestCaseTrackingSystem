@@ -10,8 +10,6 @@ namespace Services.DTO
         public string Title { get; set; }
         public string Description { get; set; }
         public BacklogItemType Type { get; set; }
-        public int? IterationID { get; set; }
-        public string Iteration { get; set; }
         public int? AssignedToUserID { get; set; }
         public string AssignedTo { get; set; }
         public int UserCreatedID { get; set; }

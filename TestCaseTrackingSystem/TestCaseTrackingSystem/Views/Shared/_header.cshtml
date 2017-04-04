@@ -8,11 +8,8 @@
             <div class="col-lg-10 no-padding text-left">
                 @{ Html.RenderAction("Show", "NavigationMenu"); }
             </div>
-            <div class="col-lg-1 text-center">
-                <button type="button" class="btn btn-link navbar-btn btn-lg" onclick="location.href='@Url.Action("Show", "User", new { id = (int)Membership.GetUser(User.Identity.Name).ProviderUserKey} )'">Hello, @User.Identity.Name</button>
-            </div>
-            <div class="col-lg-1 text-right">
-                <input class="btn btn-default navbar-btn btn-lg" type="button" value="Logout" onclick="location.href='@Url.Action("Logout", "Login")'" />
+            <div class="col-lg-2 text-right">
+                <input class="btn btn-default navbar-btn btn-lg" type="button" value="Выйти" onclick="location.href='@Url.Action("Logout", "Login")'" />
             </div>
         </div>
     </div>

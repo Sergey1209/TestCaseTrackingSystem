@@ -11,7 +11,6 @@ namespace DataAccess.Repositories.Implementation
             _context = context;
             TestCaseRepository = new TestCasesRepository(_context);
             UserRepository = new UserRepository(_context);
-            IterationRepository = new IterationRepository(_context);
             BacklogItemRepository = new BacklogItemRepository(_context);
         }
 
@@ -22,7 +21,6 @@ namespace DataAccess.Repositories.Implementation
 
         public ITestCaseRepository TestCaseRepository { get; }
         public IUserRepository UserRepository { get; }
-        public IIterationRepository IterationRepository { get; }
         public IBacklogItemRepository BacklogItemRepository { get; }
 
         public int Save()

@@ -3,12 +3,12 @@
 @model IEnumerable<BacklogItemViewModel>
 
 @{
-    ViewBag.Title = "All Backlog Items";
+    ViewBag.Title = "Все задачи/ошибки";
 }
 
 @section AdminTools
 {
-    @Html.ActionLink("Add", "Add", "Backlog", null, new { @class = "btn btn-success btn-md" })
+    @Html.ActionLink("Добавить", "Add", "Backlog", null, new { @class = "btn btn-success btn-md" })
 }
  
 @if (Model.Any())
@@ -32,7 +32,6 @@
                 <td>@backlogItem.Title</td>
                 <td>@backlogItem.Description</td>
                 <td>@backlogItem.Type</td>
-                <td>@backlogItem.Iteration</td>
                 <td>@backlogItem.AssignedTo</td>
                 <td>@backlogItem.UserCreated</td>
                 <td>@backlogItem.DateCreated</td>
@@ -45,6 +44,6 @@
 }
 else
 {
-    @Html.Partial("_noItemsMessage", "There is no backlog items here. Please ask your Admin to create one.")
+    @Html.Partial("_noItemsMessage", "На данный момент задачи/ошибки отсутствуют. Вы можете их добавить нажав на зеленую кнопку в правом верхнем углу.")
 }
 

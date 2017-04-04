@@ -16,13 +16,11 @@ namespace TestCaseStorage.Controllers
     public class BacklogController : Controller
     {
         private readonly IBacklogService BackogService;
-        private readonly IIterationService IterationService;
         private readonly IUserService UserService;
         
         public BacklogController()
         {
             BackogService = new BacklogDbService(new TCTSUnitOfWork(new TCTSDataContext()));
-            IterationService = new IterationDbService(new TCTSUnitOfWork(new TCTSDataContext()));
             UserService = new UserDbService(new TCTSUnitOfWork(new TCTSDataContext()));
         }
 
@@ -38,7 +36,6 @@ namespace TestCaseStorage.Controllers
         public ActionResult Add()
         {
             var editModel = Mapper.Map<BacklogItemEditModel>(new BacklogItemDto());
-            editModel.Iterations = IterationService.GetAllIterations().ToSelectList(t => t.Name, t => t.ID);
             editModel.Users = UserService.GetAllUsers().ToSelectList(t => t.Login, t => t.ID);
             editModel.UserCreatedId = (int)Membership.GetUser(User.Identity.Name).ProviderUserKey;
 
@@ -49,7 +46,6 @@ namespace TestCaseStorage.Controllers
         public ActionResult Edit(int id)
         {
             var currentBacklogItemModel = Mapper.Map<BacklogItemEditModel>(BackogService.GetBacklogItemById(id));
-            currentBacklogItemModel.Iterations = IterationService.GetAllIterations().ToSelectList(t => t.Name, t => t.ID, t => t.Name == currentBacklogItemModel.Iteration);
             currentBacklogItemModel.Users = UserService.GetAllUsers().ToSelectList(t => t.Login, t => t.ID, t => t.Login == currentBacklogItemModel.AssignedTo);
 
             return View("Edit", currentBacklogItemModel);

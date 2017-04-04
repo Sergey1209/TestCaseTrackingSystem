@@ -2,7 +2,7 @@
 @model TestCaseStorage.Models.BacklogItems.BacklogItemEditModel
 
 @{
-    ViewBag.Title = "Add New Backlog Item";
+    ViewBag.Title = "Добавление новой задачи/ошибки";
 }
 
 @using (Html.BeginForm("AddNew", "Backlog", FormMethod.Post))
@@ -10,19 +10,18 @@
     @Html.HiddenFor(t => t.ID)
     @Html.HiddenFor(t => t.UserCreatedId)
 
-    @Html.TextBoxLineFor(t => t.Title, "Title")
-    @Html.TextBoxLineFor(t => t.Description, "Description")
-    @Html.EnumDropDownLineFor(t => t.Type, "Type")
-    @Html.DropDownListLineFor(t => t.IterationId, Model.Iterations, "Iteration")
-    @Html.DropDownListLineFor(t => t.AssignedToUserId, Model.Users, "User")
+    @Html.TextBoxLineFor(t => t.Title, "Название")
+    @Html.TextBoxLineFor(t => t.Description, "Описание")
+    @Html.EnumDropDownLineFor(t => t.Type, "Тип")
+    @Html.DropDownListLineFor(t => t.AssignedToUserId, Model.Users, "Ответственное лицо")
 
     <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
+        <div class="col-lg-5 col-lg-offset-4 input-group-lg text-center">
             @if (Model != null)
             {
-                @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width" })
+                @Html.ActionLink("Отмена", "List", null, new { @class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width" })
             }
-            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value="Add" />
+            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value="Добавить" />
         </div>
     </div>
 }

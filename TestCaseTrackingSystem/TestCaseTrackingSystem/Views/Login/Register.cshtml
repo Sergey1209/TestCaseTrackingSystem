@@ -3,7 +3,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Registration";
+    ViewBag.Title = "Регистрация";
 }
 
 @using (Html.BeginForm())
@@ -25,18 +25,20 @@
             </div>
         </div>
 
-        @Html.TextBoxLineFor(t => t.Login, "Login")
-        @Html.TextBoxLineFor(t => t.Password, "Password")
-        @Html.TextBoxLineFor(t => t.ConfirmPassword, "Confirm Password")
-        @Html.TextBoxLineFor(t => t.Email, "Email")
-        @Html.EnumDropDownLineFor(t => t.Role, "Role")
-        @Html.TextBoxLineFor(t => t.FirstName, "First Name")
-        @Html.TextBoxLineFor(t => t.LastName, "Last Name")
+        @Html.TextBoxLineFor(t => t.Login, "Логин")
+        @Html.TextBoxLineFor(t => t.Password, "Пароль")
+        @Html.TextBoxLineFor(t => t.ConfirmPassword, "Повтор пароля")
+        @Html.TextBoxLineFor(t => t.Email, "Почта")
+        @Html.TextBoxLineFor(t => t.Skype, "Скайп")
+        @Html.EnumDropDownLineFor(t => t.Role, "Роль")
+        @Html.EnumDropDownLineFor(t => t.Position, "Позиция")
+        @Html.TextBoxLineFor(t => t.FirstName, "Имя")
+        @Html.TextBoxLineFor(t => t.LastName, "Фамилия")
 
         <div class="row">
-            <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
-                @Html.ActionLink("Cancel", "Login", null, new {@class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width"})
-                <input class="btn btn-default navbar-btn btn-lg" type="submit" value="Register"/>
+            <div class="col-lg-5 col-lg-offset-4 input-group-lg text-center">
+                @Html.ActionLink("Отмена", "Login", null, new {@class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width"})
+                <input class="btn btn-default navbar-btn btn-lg" type="submit" value="Зарегистрировать"/>
             </div>
         </div>
     </div>

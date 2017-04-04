@@ -18,7 +18,6 @@ namespace TestCaseStorage.Controllers
     {
         private readonly ITestCaseService TestCaseService;
         private readonly IBacklogService BacklogService;
-        private readonly IUserService UserService;
 
         public TestCaseController()
         {
@@ -26,7 +25,6 @@ namespace TestCaseStorage.Controllers
 
             TestCaseService = new TestCaseService(unitOfWork);
             BacklogService = new BacklogDbService(unitOfWork);
-            UserService = new UserDbService(unitOfWork);
         }
 
         [HttpGet]

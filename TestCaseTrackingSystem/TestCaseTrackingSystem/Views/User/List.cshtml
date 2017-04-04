@@ -1,8 +1,10 @@
-﻿@using TestCaseStorage.Models.Shared
+﻿@using TestCaseStorage.Infrastructure.Extensions
+@using TestCaseStorage.Infrastructure.HtmlHelpers
+@using TestCaseStorage.Models.Shared
 @model IEnumerable<TestCaseStorage.Models.Users.UserViewModel>
 
 @{
-    ViewBag.Title = "All Users";
+    ViewBag.Title = "Все Пользователи";
 }
 
 @section AdminTools
@@ -12,7 +14,7 @@
         {
             @class = "btn btn-success btn-md",
             disabled = "true",
-            title = "Only users with Admin role can add/edit/delete iterations"
+            title = "Только администраторы могут добавлять/редактировать/удалять пользователей"
         };
         var activeAttributes = new
         {
@@ -22,7 +24,7 @@
         var attributes = ViewBag.DisableAdd ? (object)disabledAttributes : (object)activeAttributes;
     }
 
-    @Html.ActionLink("Add", "Add", "User", null, attributes)
+    @Html.ActionLink("Добавить", "Add", "User", null, attributes)
 }
 
 @if (Model.Any())
@@ -30,31 +32,44 @@
     <table class="table table-striped table-hover">
         <tr>
             <th>ID</th>
-            <th>Login</th>
-            <th>Role</th>
-            <th>Email</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date Created</th>
-            <th>Last Login Date</th>
+            <th>Логин</th>
+            <th>Роль</th>
+            <th>Позиция</th>
+            <th>Почта</th>
+            <th>Скайп</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Дата создания</th>
+            <th>Дата последнего входа</th>
             <th></th>
         </tr>
         @foreach (var user in Model)
         {
-            var editHtml = ViewBag.DisableAdd ? string.Empty : "onclick=\"location.href = '" + Url.Action("Edit", new { id = user.ID }) + "'\"";
+            var editHtml = ViewBag.DisableAdd || string.Equals(user.Login, "admin", StringComparison.OrdinalIgnoreCase) ? string.Empty : "onclick=\"location.href = '" + Url.Action("Edit", new { id = user.ID }) + "'\"";
             <tr @Html.Raw(editHtml)>
                 <td>@user.ID</td>
                 <td>@user.Login</td>
-                <td>@user.Role</td>
+                <td>@EnumHelpers.GetDescription(user.Role)</td>
+                <td>
+                    @if (string.IsNullOrEmpty(EnumHelpers.GetDescription(user.Position)))
+                    {
+                        @:Не определено
+                    }
+                    else
+                    {
+                        @EnumHelpers.GetDescription(user.Position)
+                    }
+                </td>
                 <td>@user.Email</td>
+                <td>@user.Skype</td>
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
                 <td>@user.CreatedDate</td>
                 <td>@user.LastLogin</td>
                 <td>
-                    @if (!ViewBag.DisableAdd)
+                    @if (!ViewBag.DisableAdd && !string.Equals(user.Login, "admin", StringComparison.OrdinalIgnoreCase))
                     {
-                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("User", "User", user.ID))
+                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("User", "Пользователь", user.ID))
                     }
                 </td>
             </tr>
@@ -63,5 +78,5 @@
 }
 else
 {
-    @Html.Partial("_noItemsMessage", "There is no users here. Please ask your Admin to create one.")
+    @Html.Partial("_noItemsMessage", "На данный момент пользователи отсутствуют. Вы можете их добавить нажав на зеленую кнопку в правом верхнем углу.")
 }

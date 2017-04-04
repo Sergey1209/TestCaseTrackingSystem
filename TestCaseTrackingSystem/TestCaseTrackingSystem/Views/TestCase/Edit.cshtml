@@ -2,7 +2,7 @@
 @model TestCaseStorage.Models.TestCases.TestCaseEditViewModel
 
 @{
-    ViewBag.Title = "Updating Test Case - " + Model.Title;
+    ViewBag.Title = "Редактирование Тест Кейса - " + Model.Title;
 }
 
 @using (Html.BeginForm("Update", "TestCase", FormMethod.Post))
@@ -11,18 +11,18 @@
     @Html.HiddenFor(t => t.CreatedById)
     @Html.HiddenFor(t => t.DateCreated)
 
-    @Html.TextBoxLineFor(t => t.Title, "Title")
-    @Html.TextBoxLineFor(t => t.Description, "Description")
-    @Html.EnumDropDownLineFor(t => t.Status, "Status")
-    @Html.DropDownListLineFor(t => t.BacklogItemID, Model.BacklogItems, "Backlog Item")
+    @Html.TextBoxLineFor(t => t.Title, "Название")
+    @Html.TextBoxLineFor(t => t.Description, "Описание")
+    @Html.EnumDropDownLineFor(t => t.Status, "Статус")
+    @Html.DropDownListLineFor(t => t.BacklogItemID, Model.BacklogItems, "Относиться к")
 
     <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 input-group-lg text-center">
+        <div class="col-lg-5 col-lg-offset-4 input-group-lg text-center">
             @if (Model != null)
             {
-                @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width" })
+                @Html.ActionLink("Отмена", "List", null, new { @class = "btn btn-default navbar-btn btn-lg ok-cancel-btn-width" })
             }
-            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value="Update"/>
+            <input class="btn btn-default btn-lg ok-cancel-btn-width" type="submit" value="Редактировать"/>
         </div>
     </div>
 }

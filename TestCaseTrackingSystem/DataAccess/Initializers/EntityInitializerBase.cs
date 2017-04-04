@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DataAccess.Initializers
 {
-    internal abstract class EntityInitializerBase<T> : IEntityInitializer where T : class
+    public abstract class EntityInitializerBase<T> : IEntityInitializer where T : class
     {
         protected virtual IEnumerable<T> BuiltInEntities => null;
         

@@ -1,9 +1,14 @@
-﻿namespace DataAccess.Entities
+﻿using System.ComponentModel;
+
+namespace DataAccess.Entities
 {
     public enum UserRole
     {
+        [Description("Администратор")]
         Admin = 1,
+        [Description("Разработчик")]
         Developer = 2,
-        QA = 3
+        [Description("Тестировщик")]
+        QA = 4
     }
 }

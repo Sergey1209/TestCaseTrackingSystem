@@ -19,9 +19,11 @@ namespace TestCaseStorage.Models.Login
         public string ConfirmPassword { get; set; }
         [Required]
         public string Email { get; set; }
+        public string Skype { get; set; }
         [Required]
-        [Range(1, 3)]
+        [Range(1, 4)]
         public UserRole Role { get; set; }
+        public Position Position { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]

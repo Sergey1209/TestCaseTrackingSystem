@@ -9,7 +9,6 @@ namespace TestCaseStorage.App_Start
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<IterationProfile>();
                 cfg.AddProfile<BacklogItemProfile>();
                 cfg.AddProfile<UserProfile>();
                 cfg.AddProfile<TestCaseProfile>();

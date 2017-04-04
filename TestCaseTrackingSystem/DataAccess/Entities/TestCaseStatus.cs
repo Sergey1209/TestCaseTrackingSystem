@@ -4,7 +4,7 @@
     {
         NotStarted = 1,
         InProgress = 2,
-        Failed = 3,
-        Pased = 4
+        Failed = 4,
+        Pased = 8
     }
 }

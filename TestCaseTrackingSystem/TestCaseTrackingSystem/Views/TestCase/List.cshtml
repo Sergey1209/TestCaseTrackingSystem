@@ -2,7 +2,7 @@
 @model IEnumerable<TestCaseStorage.Models.TestCases.TestCaseListViewModel>
 
 @{
-    ViewBag.Title = "All Test Cases";
+    ViewBag.Title = "Все Тест Кейсы";
 }
 
 @section AdminTools
@@ -12,7 +12,7 @@
         {
             @class = "btn btn-success btn-md",
             disabled = "true",
-            title = ViewBag.IsNotQA ? "Only users with QA role can add/edit/delete test cases" : "There is no backlog items that you can add test case to. Please first add backlog item."
+            title = ViewBag.IsNotQA ? "Только тестировщики могут добавлять/редактировать/удалять тест кейсы" : "Прежде чем создавать тест кейс добавьте задачу/ошибку к которой будет относиться этот тест кейс"
         };
         var activeAttributes = new
         {
@@ -23,7 +23,7 @@
     }
     
 
-    @Html.ActionLink("Add", "Add", "TestCase", null, attributes)
+    @Html.ActionLink("Добавить", "Add", "TestCase", null, attributes)
 }
 
 @if (Model.Any())
@@ -31,12 +31,12 @@
     <table class="table table-striped table-hover">
         <tr>
             <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created By</th>
-            <th>Date Created</th>
-            <th>Run By</th>
-            <th>Status</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Создан Пользователем</th>
+            <th>Дата Создания</th>
+            <th>Запущен Пользователем</th>
+            <th>Статус</th>
             <th></th>
         </tr>
         @foreach (var testCase in Model)
@@ -52,7 +52,7 @@
                 <td>
                     @if (!ViewBag.DisableAdd)
                     {
-                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("TestCase", "Test case", testCase.ID))
+                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("TestCase", "Тест Кейс", testCase.ID))
                     }
                 </td>
             </tr>
@@ -61,5 +61,5 @@
 }
 else
 {
-    @Html.Partial("_noItemsMessage", "There is no test cases here. Please ask your Admin to create one.")
+    @Html.Partial("_noItemsMessage", "На данный момент тест кейсы отсутствуют. Вы можете их добавить нажав на зеленую кнопку в правом верхнем углу.")
 }
