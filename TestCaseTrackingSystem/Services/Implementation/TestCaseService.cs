@@ -23,6 +23,7 @@ namespace Services.Implementation
             return UnitOfWork.TestCaseRepository.GetAllTestCases().GroupBy(t => t.AssignedTo).Select(a => new TestersStatisticsDto
             {
                 TesterName = a.Key.Login,
+                TestsNotStarted = a.Count(b => b.Status == TestCaseStatus.NotStarted),
                 TestsFailed = a.Count(b => b.Status == TestCaseStatus.Failed),
                 TestsInProgress = a.Count(b => b.Status == TestCaseStatus.InProgress),
                 TestsPassed = a.Count(b => b.Status == TestCaseStatus.Pased),
