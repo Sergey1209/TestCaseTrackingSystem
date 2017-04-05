@@ -57,6 +57,8 @@ namespace Services.Implementation
                 AssignedTo = backlog.AssignedTo.Login,
                 DateCreated = backlog.DateCreated,
                 Type = backlog.Type,
+                Priority = backlog.Priority,
+                Severity = backlog.Severity,
                 UserCreatedID = backlog.CreatedByID,
                 UserCreated = backlog.CreatedBy.Login
             };
@@ -72,6 +74,8 @@ namespace Services.Implementation
                 AssignedToID = backlogItemDto.AssignedToUserID,
                 DateCreated = backlogItemDto.DateCreated,
                 Type = backlogItemDto.Type,
+                Priority = backlogItemDto.Priority,
+                Severity = backlogItemDto.Severity,
                 CreatedByID = backlogItemDto.UserCreatedID
             };
         }

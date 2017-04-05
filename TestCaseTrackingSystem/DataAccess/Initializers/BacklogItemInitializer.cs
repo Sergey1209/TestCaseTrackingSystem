@@ -12,6 +12,8 @@ namespace DataAccess.Initializers
 
             entity.HasKey(t => t.ID).Property(t => t.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             entity.Property(t => t.Type).IsRequired();
+            entity.Property(t => t.Priority).IsRequired();
+            entity.Property(t => t.Severity).IsRequired();
             entity.Property(t => t.Title).IsRequired().HasMaxLength(200);
             entity.Property(t => t.Description).IsOptional();
             entity.Property(t => t.IterationID).IsOptional();

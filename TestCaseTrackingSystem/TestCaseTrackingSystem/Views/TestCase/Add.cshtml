@@ -2,13 +2,14 @@
 @model TestCaseStorage.Models.TestCases.TestCaseAddViewModel
 
 @{
-    ViewBag.Title = "Добавить Тест Кейс";
+    ViewBag.Title = "Добавление нового тест кейса";
 }
 
 @using (Html.BeginForm("AddNew", "TestCase", FormMethod.Post))
 {
     @Html.TextBoxLineFor(t => t.Title, "Название")
-    @Html.TextBoxLineFor(t => t.Description, "Описание")
+    @Html.TextAreaLineFor(t => t.Description, "Описание")
+    @Html.TextBoxLineFor(t => t.Tag, "Метка")
     @Html.DropDownListLineFor(t => t.BacklogItemID, Model.BacklogItems, "Относиться к")
 
     <div class="row">

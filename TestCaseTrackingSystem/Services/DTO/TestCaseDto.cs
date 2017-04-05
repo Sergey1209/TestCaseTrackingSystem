@@ -12,6 +12,8 @@ namespace Services.DTO
 
         public string Description { get; set; }
 
+        public string Tag { get; set; }
+
         public TestCaseStatus Status { get; set; }
 
         public int CreatedByID { get; set; }

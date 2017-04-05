@@ -149,7 +149,6 @@
     <Compile Include="Models\Login\RegisterViewModel.cs" />
     <Compile Include="Models\Shared\EditDeleteSectionModel.cs" />
     <Compile Include="Models\Shared\EditLineModel.cs" />
-    <Compile Include="Models\Shared\InfoLineModel.cs" />
     <Compile Include="Models\TestCases\TestCaseViewModel.cs" />
     <Compile Include="Models\Users\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +159,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\edit-delete.jpg" />
     <Content Include="Content\Images\home.png" />
+    <Content Include="Content\Images\icons.jpg" />
     <Content Include="Content\main.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -253,8 +253,6 @@
     <Content Include="Views\TestCase\List.cshtml" />
     <Content Include="Views\User\List.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Show.cshtml" />
-    <Content Include="Views\Shared\_infoLine.cshtml" />
     <Content Include="Views\Backlog\Edit.cshtml" />
     <Content Include="Views\TestCase\Edit.cshtml" />
     <Content Include="Views\TestCase\Add.cshtml" />

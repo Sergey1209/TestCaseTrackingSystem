@@ -9,6 +9,8 @@ namespace DataAccess.Entities
     {
         public int ID { get; set; }
         public BacklogItemType Type { get; set; }
+        public BacklogItemPriority Priority { get; set; }
+        public BacklogItemSeverity Severity { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int? IterationID { get; set; }

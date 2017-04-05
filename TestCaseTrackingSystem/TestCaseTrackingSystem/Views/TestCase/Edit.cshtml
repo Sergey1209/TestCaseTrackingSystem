@@ -12,7 +12,8 @@
     @Html.HiddenFor(t => t.DateCreated)
 
     @Html.TextBoxLineFor(t => t.Title, "Название")
-    @Html.TextBoxLineFor(t => t.Description, "Описание")
+    @Html.TextAreaLineFor(t => t.Description, "Описание")
+    @Html.TextBoxLineFor(t => t.Tag, "Метка")
     @Html.EnumDropDownLineFor(t => t.Status, "Статус")
     @Html.DropDownListLineFor(t => t.BacklogItemID, Model.BacklogItems, "Относиться к")
 

@@ -10,6 +10,8 @@ namespace Services.DTO
         public string Title { get; set; }
         public string Description { get; set; }
         public BacklogItemType Type { get; set; }
+        public BacklogItemPriority Priority { get; set; }
+        public BacklogItemSeverity Severity { get; set; }
         public int? AssignedToUserID { get; set; }
         public string AssignedTo { get; set; }
         public int UserCreatedID { get; set; }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using DataAccess;
@@ -30,14 +29,6 @@ namespace TestCaseStorage.Controllers
             var usersListModel = Mapper.Map<IEnumerable<UserViewModel>>(UserService.GetAllUsers());
 
             return View("List", usersListModel);
-        }
-
-        [HttpGet]
-        public ViewResult Show(int id)
-        {
-            var userModel = Mapper.Map<UserViewModel>(UserService.GetUserById(id));
-
-            return View("Show", userModel);
         }
 
         [HttpGet]

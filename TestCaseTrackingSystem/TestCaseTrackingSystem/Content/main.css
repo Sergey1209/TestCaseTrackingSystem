@@ -94,7 +94,7 @@ a.home-button {
 }
 
 .button-edit {
-    background: url(Images/edit-delete.jpg) no-repeat -10px -10px;
+    background: url(Images/icons.jpg) no-repeat 2px -85px;
     display: block;
     width: 35px;
     height: 35px;
@@ -103,7 +103,7 @@ a.home-button {
 }
 
 .button-delete {
-    background: url(Images/edit-delete.jpg) no-repeat -10px -55px;
+    background: url(Images/icons.jpg) no-repeat -38px -85px;
     display: block;
     width: 35px;
     height: 35px;

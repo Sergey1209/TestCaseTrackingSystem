@@ -17,6 +17,14 @@ namespace TestCaseStorage.Infrastructure.HtmlHelpers
                         helper.TextBoxFor(expression, new { @class = "form-control navbar-btn", placeholder = placeholder ?? label })));
         }
 
+        public static MvcHtmlString TextAreaLineFor<TModel>(this HtmlHelper<TModel> helper, Expression<Func<TModel, string>> expression, string label, string placeholder = null)
+        {
+            return helper.Partial("_editorRow",
+                new Tuple<string, MvcHtmlString>(
+                        label,
+                        helper.TextAreaFor(expression, new { @class = "form-control navbar-btn", placeholder = placeholder ?? label, style = "height:100px" })));
+        }
+
         public static MvcHtmlString DatePickerLineFor<TModel>(this HtmlHelper<TModel> helper, Expression<Func<TModel, DateTime>> expression, string label, string placeholder = null)
         {
             return helper.Partial("_editorRow",

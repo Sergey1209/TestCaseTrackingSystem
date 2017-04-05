@@ -15,6 +15,10 @@ namespace TestCaseStorage.Models.BacklogItems
         public string Description { get; set; }
         [Range(1, 2)]
         public BacklogItemType Type { get; set; }
+        [Range(1, 4)]
+        public BacklogItemPriority Priority { get; set; }
+        [Range(1, 4)]
+        public BacklogItemSeverity Severity { get; set; }
         public string UserCreated { get; set; }
         public DateTime DateCreated { get; set; }
         [Required]

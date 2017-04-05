@@ -50,9 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\BacklogItem.cs" />
+    <Compile Include="Entities\BacklogItemPriority.cs" />
+    <Compile Include="Entities\BacklogItemSeverity.cs" />
     <Compile Include="Entities\BacklogItemType.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\TestCase.cs" />
+    <Compile Include="Entities\TestCasePriority.cs" />
     <Compile Include="Entities\TestCaseStatus.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />

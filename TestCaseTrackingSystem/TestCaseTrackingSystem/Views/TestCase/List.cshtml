@@ -1,8 +1,9 @@
-﻿@using TestCaseStorage.Models.Shared
+﻿@using TestCaseStorage.Infrastructure.Extensions
+@using TestCaseStorage.Models.Shared
 @model IEnumerable<TestCaseStorage.Models.TestCases.TestCaseListViewModel>
 
 @{
-    ViewBag.Title = "Все Тест Кейсы";
+    ViewBag.Title = "Все тест кейсы";
 }
 
 @section AdminTools
@@ -33,6 +34,7 @@
             <th>ID</th>
             <th>Название</th>
             <th>Описание</th>
+            <th>Метка</th>
             <th>Создан Пользователем</th>
             <th>Дата Создания</th>
             <th>Запущен Пользователем</th>
@@ -45,10 +47,11 @@
                 <td>@testCase.ID</td>
                 <td>@testCase.Title</td>
                 <td>@testCase.Description</td>
+                <td>@testCase.Tag</td>
                 <td>@testCase.CreatedBy</td>
                 <td>@testCase.DateCreated</td>
                 <td>@testCase.RunBy</td>
-                <td>@testCase.Status.ToString()</td>
+                <td>@EnumHelpers.GetDescription(testCase.Status)</td>
                 <td>
                     @if (!ViewBag.DisableAdd)
                     {

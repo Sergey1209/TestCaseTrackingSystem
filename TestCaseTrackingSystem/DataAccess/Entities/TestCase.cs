@@ -11,6 +11,7 @@ namespace DataAccess.Entities
         public string Description { get; set; }
         public string Tag { get; set; }
         public TestCaseStatus Status { get; set; }
+        public TestCasePriority Priority { get; set; }
         public int CreatedByID { get; set; }
         public DateTime DateCreated { get; set; }
         public int? RunByID { get; set; }

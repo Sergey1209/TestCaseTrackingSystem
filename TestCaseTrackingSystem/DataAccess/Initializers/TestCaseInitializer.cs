@@ -14,6 +14,8 @@ namespace DataAccess.Initializers
             entity.Property(t => t.Title).IsRequired().HasMaxLength(200);
             entity.Property(t => t.Description).IsOptional();
             entity.Property(t => t.Status).IsRequired();
+            entity.Property(t => t.Tag).IsOptional();
+            entity.Property(t => t.Priority).IsRequired();
             entity.Property(t => t.CreatedByID).IsOptional();
             entity.Property(t => t.DateCreated).IsRequired();
             entity.Property(t => t.RunByID).IsOptional();

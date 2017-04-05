@@ -14,6 +14,9 @@ namespace TestCaseStorage
             bundles.Add(new ScriptBundle("~/bundles/main")
                 .Include("~/Scripts/main.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/charts")
+                .Include("~/Scripts/Chart.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
