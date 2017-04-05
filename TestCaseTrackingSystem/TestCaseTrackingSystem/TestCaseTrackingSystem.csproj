@@ -148,6 +148,7 @@
     <Compile Include="Models\BacklogItems\BacklogItem.cs" />
     <Compile Include="Models\Chart\ChartModel.cs" />
     <Compile Include="Models\Chart\ChartType.cs" />
+    <Compile Include="Models\Home\HomeModel.cs" />
     <Compile Include="Models\Login\LoginModel.cs" />
     <Compile Include="Models\Login\RegisterViewModel.cs" />
     <Compile Include="Models\Shared\EditDeleteSectionModel.cs" />

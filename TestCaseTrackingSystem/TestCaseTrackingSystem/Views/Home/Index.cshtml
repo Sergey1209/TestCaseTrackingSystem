@@ -1,11 +1,23 @@
-﻿@{
+﻿@using TestCaseStorage.Infrastructure.HtmlHelpers
+@using TestCaseStorage.Models.Home;
+
+@model HomeModel
+
+@{
     ViewBag.Title = "Главная";
 }
 
 @Scripts.Render("~/bundles/charts")
 
 <div class="row">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        @Html.EnumDropDownLineFor(t => t.TestCaseStatus, "Статус", submitOnChange: true)
+    }    
+</div>
+
+<div class="row">
     <div class="col-lg-offset-1 col-lg-9 text-center">
-        @Html.Action("TestersStatisticsChart", "Chart")
+        @Html.Action("TestersStatisticsChart", "Chart", new { status = Model.TestCaseStatus })
     </div>
 </div>

@@ -33,12 +33,12 @@ namespace TestCaseStorage.Infrastructure.HtmlHelpers
                         helper.TextBoxFor(expression, new { @class = "form-control navbar-btn date-picker", placeholder = placeholder ?? label })));
         }
 
-        public static MvcHtmlString EnumDropDownLineFor<TModel, TEnum>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TEnum>> expression, string label, Func<TEnum, TEnum> excludeItem = null, string placeholder = null)
+        public static MvcHtmlString EnumDropDownLineFor<TModel, TEnum>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TEnum>> expression, string label, Func<TEnum, TEnum> excludeItem = null, string placeholder = null, bool submitOnChange = false)
         {
             return helper.Partial("_editorRow",
                 new Tuple<string, MvcHtmlString>(
                         label,
-                        helper.DropDownListFor(expression, EnumHelpers.GetDescriptionsSelectList<TEnum>(excludeItem), "Выбрать...", new { @class = "form-control navbar-btn", placeholder = placeholder ?? label })));
+                        helper.DropDownListFor(expression, EnumHelpers.GetDescriptionsSelectList<TEnum>(excludeItem), "Выбрать...", new { @class = "form-control navbar-btn", placeholder = placeholder ?? label, onchange = submitOnChange ? "this.form.submit();" : string.Empty })));
         }
 
         public static MvcHtmlString DropDownListLineFor<TModel>(this HtmlHelper<TModel> helper, Expression<Func<TModel, int>> expression, IEnumerable<SelectListItem> selectList, string label, string placeholder = null)
