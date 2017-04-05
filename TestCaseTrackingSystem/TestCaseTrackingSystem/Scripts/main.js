@@ -21,10 +21,14 @@ $.extend(TCTS.Startup,
                 e.preventDefault();
             });
         });
+    },
+    InitDatePicker: function () {
+        $('.date-picker').datepicker();
     }
 });
 
 $(function() {
     TCTS.Startup.ButtonConfirm();
     TCTS.Startup.DisableLinks();
+    TCTS.Startup.InitDatePicker();
 });
