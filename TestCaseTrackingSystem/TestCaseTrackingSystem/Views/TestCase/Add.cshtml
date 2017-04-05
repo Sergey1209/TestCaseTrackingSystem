@@ -10,6 +10,7 @@
     @Html.TextBoxLineFor(t => t.Title, "Название")
     @Html.TextAreaLineFor(t => t.Description, "Описание")
     @Html.TextBoxLineFor(t => t.Tag, "Метка")
+    @Html.DropDownListLineFor(t => t.AssignedToID, Model.Users, "Ответственное лицо")
     @Html.DropDownListLineFor(t => t.BacklogItemID, Model.BacklogItems, "Относиться к")
 
     <div class="row">

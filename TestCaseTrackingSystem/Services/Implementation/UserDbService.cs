@@ -20,6 +20,11 @@ namespace Services.Implementation
             return UnitOfWork.UserRepository.GetAllUsers().Select(ConvertToDto);
         }
 
+        public IEnumerable<UserDto> GetAllTesters()
+        {
+            return UnitOfWork.UserRepository.GetAll().Where(t => t.Role == UserRole.QA).Select(ConvertToDto);
+        }
+
         public UserDto GetUserById(int id)
         {
             return ConvertToDto(UnitOfWork.UserRepository.GetUserById(id));
@@ -95,6 +100,6 @@ namespace Services.Implementation
                 CreatedDate = user.CreatedDate,
                 LastLogin = user.LastLogin
             };
-        }
+        }        
     }
 }

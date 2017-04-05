@@ -1,0 +1,32 @@
+﻿@model TestCaseStorage.Models.Chart.ChartModel
+
+<div class="chart-container">
+    <canvas id="@Model.Guid"></canvas>
+</div>
+
+<script>
+    var ctx = document.getElementById("@Model.Guid");
+    var myChart = new Chart(ctx, {
+        type: '@Model.Type.ToString().ToLower()',
+        data: {
+            labels: [@Html.Raw(Model.Labels)],
+            datasets: [{
+                label: '@Model.YLabel',
+                data: [@Model.Values],
+                backgroundColor: 'green',
+                borderColor: 'grey',
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value) { if (value % 1 === 0) { return value; } }
+                    }
+                }]
+            }
+        }
+    });
+</script>

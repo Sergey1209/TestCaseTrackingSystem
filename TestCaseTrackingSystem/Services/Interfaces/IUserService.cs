@@ -11,5 +11,6 @@ namespace Services.Interfaces
         void AddNew(UserDto user);
         void Update(UserDto user);
         void UpdateLastLoginDate(string login);
+        IEnumerable<UserDto> GetAllTesters();
     }
 }

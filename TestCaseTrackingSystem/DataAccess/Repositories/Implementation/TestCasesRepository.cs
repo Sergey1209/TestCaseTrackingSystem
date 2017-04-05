@@ -18,14 +18,14 @@ namespace DataAccess.Repositories.Implementation
         {
             return TctsDataContext.TestCases
                 .Include(t => t.CreatedBy)
-                .Include(t => t.RunBy);
+                .Include(t => t.AssignedTo);
         }
 
         public TestCase GetTestCaseById(int id)
         {
             return TctsDataContext.TestCases
                 .Include(t => t.CreatedBy)
-                .Include(t => t.RunBy)
+                .Include(t => t.AssignedTo)
                 .Single(t => t.ID == id);
         }
 

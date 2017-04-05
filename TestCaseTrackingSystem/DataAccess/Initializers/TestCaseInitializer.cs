@@ -18,7 +18,7 @@ namespace DataAccess.Initializers
             entity.Property(t => t.Priority).IsRequired();
             entity.Property(t => t.CreatedByID).IsOptional();
             entity.Property(t => t.DateCreated).IsRequired();
-            entity.Property(t => t.RunByID).IsOptional();
+            entity.Property(t => t.AssignedToID).IsOptional();
             entity.Property(t => t.BacklogItemID).IsRequired();
         }
     }

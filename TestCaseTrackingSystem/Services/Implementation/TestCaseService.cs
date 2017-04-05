@@ -18,6 +18,17 @@ namespace Services.Implementation
             return UnitOfWork.TestCaseRepository.GetAllTestCases().Select(ConvertToDto);
         }
 
+        public IEnumerable<TestersStatisticsDto> GetTestersStatistics()
+        {
+            return UnitOfWork.TestCaseRepository.GetAllTestCases().GroupBy(t => t.AssignedTo).Select(a => new TestersStatisticsDto
+            {
+                TesterName = a.Key.Login,
+                TestsFailed = a.Count(b => b.Status == TestCaseStatus.Failed),
+                TestsInProgress = a.Count(b => b.Status == TestCaseStatus.InProgress),
+                TestsPassed = a.Count(b => b.Status == TestCaseStatus.Pased),
+            });
+        }
+
         public TestCaseDto GetTestCaseById(int id)
         {
             return ConvertToDto(UnitOfWork.TestCaseRepository.GetTestCaseById(id));
@@ -58,8 +69,8 @@ namespace Services.Implementation
                 CreatedBy = testCase.CreatedBy.Login,
                 CreatedByID = testCase.CreatedByID,
                 DateCreated = testCase.DateCreated,
-                RunBy = testCase.RunBy?.Login,
-                RunByID = testCase.RunByID,
+                AssignedTo = testCase.AssignedTo?.Login,
+                AssignedToID = testCase.AssignedToID,
                 BacklogItemID = testCase.BacklogItemID
             };
         }
@@ -75,9 +86,9 @@ namespace Services.Implementation
                 Status = dtoTestCase.Status,
                 CreatedByID = dtoTestCase.CreatedByID,
                 DateCreated = dtoTestCase.DateCreated,
-                RunByID = dtoTestCase.RunByID,
+                AssignedToID = dtoTestCase.AssignedToID,
                 BacklogItemID = dtoTestCase.BacklogItemID
             };
-        }
+        }        
     }
 }

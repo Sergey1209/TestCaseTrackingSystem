@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DTO\BacklogItemDto.cs" />
     <Compile Include="DTO\TestCaseDto.cs" />
+    <Compile Include="DTO\TestersStatisticsDto.cs" />
     <Compile Include="DTO\UserDto.cs" />
     <Compile Include="Exceptions\DuplicateUserException.cs" />
     <Compile Include="Implementation\BacklogDbService.cs" />

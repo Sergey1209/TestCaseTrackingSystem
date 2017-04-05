@@ -2,8 +2,10 @@
     ViewBag.Title = "Главная";
 }
 
-<div>
-    <div style="text-align: center; margin-top: 250px; font-size: 40px; color: #008080">
-        Test Case Tracking System
+@Scripts.Render("~/bundles/charts")
+
+<div class="row">
+    <div class="col-lg-offset-1 col-lg-9 text-center">
+        @Html.Action("TestersStatisticsChart", "Chart")
     </div>
 </div>

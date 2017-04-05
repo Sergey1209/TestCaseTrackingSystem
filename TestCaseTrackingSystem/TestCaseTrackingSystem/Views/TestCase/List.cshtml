@@ -37,7 +37,7 @@
             <th>Метка</th>
             <th>Создан Пользователем</th>
             <th>Дата Создания</th>
-            <th>Запущен Пользователем</th>
+            <th>Ответственное лицо</th>
             <th>Статус</th>
             <th></th>
         </tr>
@@ -50,7 +50,7 @@
                 <td>@testCase.Tag</td>
                 <td>@testCase.CreatedBy</td>
                 <td>@testCase.DateCreated</td>
-                <td>@testCase.RunBy</td>
+                <td>@testCase.AssignedTo</td>
                 <td>@EnumHelpers.GetDescription(testCase.Status)</td>
                 <td>
                     @if (!ViewBag.DisableAdd)

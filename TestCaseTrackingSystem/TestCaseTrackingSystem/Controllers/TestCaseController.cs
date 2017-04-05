@@ -18,6 +18,7 @@ namespace TestCaseStorage.Controllers
     {
         private readonly ITestCaseService TestCaseService;
         private readonly IBacklogService BacklogService;
+        private readonly IUserService UserService;
 
         public TestCaseController()
         {
@@ -25,6 +26,7 @@ namespace TestCaseStorage.Controllers
 
             TestCaseService = new TestCaseService(unitOfWork);
             BacklogService = new BacklogDbService(unitOfWork);
+            UserService = new UserDbService(unitOfWork);
         }
 
         [HttpGet]
@@ -42,7 +44,8 @@ namespace TestCaseStorage.Controllers
         {
             var viewModel = new TestCaseAddViewModel
             {
-                BacklogItems = BacklogService.GetAllBacklogItems().ToSelectList(t => t.Title, t => t.ID)
+                BacklogItems = BacklogService.GetAllBacklogItems().ToSelectList(t => t.Title, t => t.ID),
+                Users = UserService.GetAllTesters().ToSelectList(t => t.Login, t => t.ID)
             };
 
             return View("Add", viewModel);
@@ -53,6 +56,7 @@ namespace TestCaseStorage.Controllers
         {
             var testCaseViewModel = Mapper.Map<TestCaseEditViewModel>(TestCaseService.GetTestCaseById(id));
             testCaseViewModel.BacklogItems = BacklogService.GetAllBacklogItems().ToSelectList(t => t.Title, t => t.ID);
+            testCaseViewModel.Users = UserService.GetAllTesters().ToSelectList(t => t.Login, t => t.ID);
 
             return View("Edit", testCaseViewModel);
         }
@@ -71,8 +75,6 @@ namespace TestCaseStorage.Controllers
         public RedirectToRouteResult Update(TestCaseEditViewModel testCase)
         {
             var testCaseDto = Mapper.Map<TestCaseDto>(testCase);
-            testCaseDto.RunByID = (int)Membership.GetUser(User.Identity.Name).ProviderUserKey;
-
             TestCaseService.Update(testCaseDto);
 
             return RedirectToAction("List");

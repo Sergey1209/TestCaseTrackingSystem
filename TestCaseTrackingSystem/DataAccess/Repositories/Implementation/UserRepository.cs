@@ -29,7 +29,7 @@ namespace DataAccess.Repositories.Implementation
 
         public void RemoveUserById(int id)
         {
-            TctsDataContext.TestCases.Where(t => t.CreatedByID == id || t.RunByID == id).Load();
+            TctsDataContext.TestCases.Where(t => t.CreatedByID == id || t.AssignedToID == id).Load();
             TctsDataContext.BacklogItems.Where(t => t.CreatedByID == id || t.AssignedToID == id).Load();
             TctsDataContext.Users.Remove(TctsDataContext.Users.Find(id));
         }

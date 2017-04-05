@@ -22,9 +22,9 @@ namespace Services.DTO
 
         public DateTime DateCreated { get; set; }
 
-        public int? RunByID { get; set; }
+        public int AssignedToID { get; set; }
 
-        public string RunBy { get; set; }
+        public string AssignedTo { get; set; }
 
         public int BacklogItemID { get; set; }
     }

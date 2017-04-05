@@ -15,7 +15,7 @@ namespace TestCaseStorage.Models.TestCases
         public TestCaseStatus Status { get; set; }
         public string CreatedBy { get; set; }
         public DateTime DateCreated { get; set; }
-        public string RunBy { get; set; }
+        public string AssignedTo { get; set; }
         public int BacklogItemID { get; set; }
     }
 
@@ -34,6 +34,8 @@ namespace TestCaseStorage.Models.TestCases
         public string Description { get; set; }
         public string Tag { get; set; }
         [Range(1, Int32.MaxValue)]
+        public int AssignedToID { get; set; }
+        public IEnumerable<SelectListItem> Users { get; set; }
         public int BacklogItemID { get; set; }
         public IEnumerable<SelectListItem> BacklogItems { get; set; }
     }

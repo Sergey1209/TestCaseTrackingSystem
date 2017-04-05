@@ -14,12 +14,12 @@ namespace DataAccess.Entities
         public TestCasePriority Priority { get; set; }
         public int CreatedByID { get; set; }
         public DateTime DateCreated { get; set; }
-        public int? RunByID { get; set; }
+        public int AssignedToID { get; set; }
         public int BacklogItemID { get; set; }
 
         
         public User CreatedBy { get; set; }
-        public User RunBy { get; set; }
+        public User AssignedTo { get; set; }
         public BacklogItem BacklogItem { get; set; }
     }
 }
