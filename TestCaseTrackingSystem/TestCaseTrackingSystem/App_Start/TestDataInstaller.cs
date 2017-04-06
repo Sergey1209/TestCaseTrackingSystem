@@ -13,11 +13,11 @@ namespace TestCaseStorage.App_Start
     {
         private const int MaxUsersCount = 20;
         private const int MaxBacklogItemsCount = 30;
-        private const int MaxTestCasesCount = 50;
+        private const int MaxTestCasesCount = 200;
 
-        private static Random RandomUser = new Random();
-        private static Random RandomBacklogItem = new Random();
-        private static Random RandomEnum = new Random();
+        private static readonly Random RandomUser = new Random();
+        private static readonly Random RandomBacklogItem = new Random();
+        private static readonly Random RandomEnum = new Random();
 
         private const string TestBacklogItemTitlePattern = "Test_BacklogItemN{0}";
         private const string TestBacklogItemDescriptionPattern = "Test_BacklogItemDescriptionN{0}";
@@ -104,7 +104,7 @@ namespace TestCaseStorage.App_Start
         private static TEnum GetRandomEnum<TEnum>()
         {
             var values = new List<TEnum>(Enum.GetValues(typeof(TEnum)).Cast<TEnum>());
-            return values[RandomEnum.Next(1, values.Count)];
+            return values[RandomEnum.Next(0, values.Count)];
         }
 
         private static int GetRandomUserId(ITCTSUnitOfWork unitOfWork)
@@ -116,7 +116,7 @@ namespace TestCaseStorage.App_Start
         {
             var testerIds = unitOfWork.UserRepository.GetAllUsers().Where(t => t.Role == UserRole.QA).Select(t => t.ID).ToArray();
 
-            return testerIds[RandomUser.Next(1, testerIds.Length)];
+            return testerIds[RandomUser.Next(0, testerIds.Length)];
         }
 
         private static int GetRandomBacklogItemId(ITCTSUnitOfWork unitOfWork)

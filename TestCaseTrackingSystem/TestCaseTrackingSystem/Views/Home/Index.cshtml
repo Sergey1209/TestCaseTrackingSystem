@@ -12,7 +12,7 @@
 <div class="row">
     @using (Html.BeginForm("Index", "Home", FormMethod.Get))
     {
-        @Html.EnumDropDownLineFor(t => t.TestCaseStatus, "Статус", submitOnChange: true)
+        @Html.EnumDropDownLineFor(t => t.TestCaseStatus, "Статус теста: ", submitOnChange: true, showOptionLabel: false)
     }    
 </div>
 

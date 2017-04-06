@@ -40,6 +40,7 @@ namespace DataAccess.Initializers
             entity.Property(t => t.LastLogin).IsOptional();
             entity.Property(t => t.CreatedDate).IsRequired();
             entity.Property(t => t.Locked).IsRequired();
+            entity.HasMany(t => t.BacklogItems).WithRequired(t => t.AssignedTo).WillCascadeOnDelete(false);
         }
     }
 }
