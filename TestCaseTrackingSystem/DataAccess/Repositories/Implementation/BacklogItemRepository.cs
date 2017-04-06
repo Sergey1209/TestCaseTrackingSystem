@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using DataAccess.Entities;
@@ -27,6 +28,11 @@ namespace DataAccess.Repositories.Implementation
                 .Include(t => t.AssignedTo)
                 .Include(t => t.CreatedBy)
                 .First(t => t.ID == id);
+        }
+
+        public BacklogItem GetBacklogItemByTitle(string title)
+        {
+            return TctsDataContext.BacklogItems.FirstOrDefault(t => t.Title == title);
         }
     }
 }

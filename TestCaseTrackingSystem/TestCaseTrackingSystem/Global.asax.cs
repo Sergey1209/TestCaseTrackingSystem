@@ -14,6 +14,7 @@ namespace TestCaseStorage
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.Initialize();
+            TestDataInstaller.Install();
         }
     }
 }

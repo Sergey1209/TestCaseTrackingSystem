@@ -28,20 +28,22 @@
 
 @if (Model.Any())
 {
-    <table class="table table-striped table-hover">
-        <tr>
-            <th>ID</th>
-            <th>Логин</th>
-            <th>Роль</th>
-            <th>Позиция</th>
-            <th>Почта</th>
-            <th>Скайп</th>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Дата создания</th>
-            <th>Дата последнего входа</th>
-            <th></th>
-        </tr>
+    <table class="tablesorter table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Логин</th>
+                <th>Роль</th>
+                <th>Позиция</th>
+                <th>Почта</th>
+                <th>Скайп</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Дата создания</th>
+                <th>Дата последнего входа</th>
+                <th></th>
+            </tr>
+        </thead>        
         @foreach (var user in Model)
         {
             var editHtml = ViewBag.DisableAdd || string.Equals(user.Login, "admin", StringComparison.OrdinalIgnoreCase) ? string.Empty : "onclick=\"location.href = '" + Url.Action("Edit", new { id = user.ID }) + "'\"";

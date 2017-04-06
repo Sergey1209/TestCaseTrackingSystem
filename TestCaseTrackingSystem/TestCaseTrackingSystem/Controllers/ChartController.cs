@@ -29,8 +29,8 @@ namespace TestCaseStorage.Controllers
                 YLabel = GetStatusYLabel(status),
                 Guid = "chart",
                 Type = ChartType.Bar,
-                Labels = TestCaseService.GetTestersStatistics().Select(t => t.TesterName).Aggregate((a, b) => string.Format("'{0}'", a) + ", " + string.Format("'{0}'", b)),
-                Values = TestCaseService.GetTestersStatistics().Select(t => GetStatusValue(status, t)).Aggregate((a, b) => string.Format("{0}", a) + ", " + string.Format("{0}", b))
+                Labels = string.Join(",", TestCaseService.GetTestersStatistics().Select(t => string.Format("'{0}'", t.TesterName))),
+                Values = string.Join(",", TestCaseService.GetTestersStatistics().Select(t => GetStatusValue(status, t)))
             };
 
             return PartialView("_chart", chartModel);

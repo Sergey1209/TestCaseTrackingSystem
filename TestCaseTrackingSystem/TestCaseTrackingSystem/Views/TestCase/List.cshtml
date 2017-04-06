@@ -29,18 +29,20 @@
 
 @if (Model.Any())
 {
-    <table class="table table-striped table-hover">
-        <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Описание</th>
-            <th>Метка</th>
-            <th>Создан Пользователем</th>
-            <th>Дата Создания</th>
-            <th>Ответственное лицо</th>
-            <th>Статус</th>
-            <th></th>
-        </tr>
+    <table class="table table-striped table-hover tablesorter">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Метка</th>
+                <th>Создан Пользователем</th>
+                <th>Дата Создания</th>
+                <th>Ответственное лицо</th>
+                <th>Статус</th>
+                <th></th>
+            </tr>
+        </thead>        
         @foreach (var testCase in Model)
         {
             <tr onclick="location.href='@Url.Action("Edit", new { id = testCase.ID })'">

@@ -24,6 +24,9 @@ $.extend(TCTS.Startup,
     },
     InitDatePicker: function () {
         $('.date-picker').datepicker();
+    },
+    InitTableSorter: function () {
+        $("table").tablesorter(); 
     }
 });
 
@@ -31,4 +34,5 @@ $(function() {
     TCTS.Startup.ButtonConfirm();
     TCTS.Startup.DisableLinks();
     TCTS.Startup.InitDatePicker();
+    TCTS.Startup.InitTableSorter();
 });

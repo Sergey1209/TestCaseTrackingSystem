@@ -13,7 +13,6 @@ namespace DataAccess.Entities
         public BacklogItemSeverity Severity { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int? IterationID { get; set; }
         public int CreatedByID { get; set; }
         public DateTime DateCreated { get; set; }
         public int? AssignedToID { get; set; }

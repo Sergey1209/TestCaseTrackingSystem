@@ -27,7 +27,7 @@ namespace Services.Implementation
                 TestsFailed = a.Count(b => b.Status == TestCaseStatus.Failed),
                 TestsInProgress = a.Count(b => b.Status == TestCaseStatus.InProgress),
                 TestsPassed = a.Count(b => b.Status == TestCaseStatus.Pased),
-            });
+            }).OrderBy(t => t.TesterName);
         }
 
         public TestCaseDto GetTestCaseById(int id)

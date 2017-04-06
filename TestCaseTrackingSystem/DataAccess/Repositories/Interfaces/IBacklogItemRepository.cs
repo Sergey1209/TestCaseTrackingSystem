@@ -7,5 +7,6 @@ namespace DataAccess.Repositories.Interfaces
     {
         IEnumerable<BacklogItem> GetAllBacklogItems();
         BacklogItem GetBacklogItemById(int id);
+        BacklogItem GetBacklogItemByTitle(string title);
     }
 }

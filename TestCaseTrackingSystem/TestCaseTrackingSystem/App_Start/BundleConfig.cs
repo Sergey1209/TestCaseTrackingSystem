@@ -9,7 +9,8 @@ namespace TestCaseStorage
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 .Include("~/Scripts/jquery-{version}.js")
-                .Include("~/Scripts/jquery-ui-{version}.js"));
+                .Include("~/Scripts/jquery-ui-{version}.js")
+                .Include("~/Scripts/jquery.tablesorter.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/main")
                 .Include("~/Scripts/main.js"));
@@ -27,7 +28,8 @@ namespace TestCaseStorage
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap.css")
                 .Include("~/Content/main.css")
-                .Include("~/Content/themes/base/jquery-ui.css"));
+                .Include("~/Content/themes/base/jquery-ui.css")
+                .Include("~/Content/themes/blue/style.css"));
         }
     }
 }
