@@ -70,7 +70,7 @@ namespace TestCaseStorage.App_Start
             {
                 Login = string.Format(TestUserLoginPattern, a),
                 Password = TestUserPassword,
-                Role = GetRandomEnum<UserRole>(),
+                Role = GetRandomEnum(UserRole.Admin),
                 Position = GetRandomEnum<Position>(),
                 FirstName = string.Format(TestUserFirstNamePattern, a),
                 LastName = string.Format(TestUserLastNamePattern, a),
@@ -101,9 +101,9 @@ namespace TestCaseStorage.App_Start
             unitOfWork.Save();
         }
 
-        private static TEnum GetRandomEnum<TEnum>()
+        private static TEnum GetRandomEnum<TEnum>(TEnum exludeItem = default (TEnum))
         {
-            var values = new List<TEnum>(Enum.GetValues(typeof(TEnum)).Cast<TEnum>());
+            var values = new List<TEnum>(Enum.GetValues(typeof(TEnum)).Cast<TEnum>().Where(t => exludeItem.ToString() == default(TEnum).ToString() || t.ToString() != exludeItem.ToString()));
             return values[RandomEnum.Next(0, values.Count)];
         }
 
