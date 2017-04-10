@@ -19,14 +19,14 @@
             <tr>
                 <th></th>
                 <th>Название</th>
-                <th>Описание</th>
+                @*<th>Описание</th>*@
                 <th>Тип</th>
                 <th>Приоритет</th>
                 <th>Критичность</th>
                 <th>Ответственное лицо</th>
                 <th>Создан пользователем</th>
                 <th>Дата создания</th>
-                <th></th>
+                <th class="edit-delete-buttons-column"></th>
             </tr>
         </thead>
         @foreach (var backlogItem in Model)
@@ -34,7 +34,7 @@
             <tr onclick="location.href='@Url.Action("Edit", new { id = backlogItem.ID })'">
                 <td>@backlogItem.ID</td>
                 <td>@backlogItem.Title</td>
-                <td>@backlogItem.Description</td>
+                @*<td>@backlogItem.Description</td>*@
                 <td>@EnumHelpers.GetDescription(backlogItem.Type)</td>
                 <td>@EnumHelpers.GetDescription(backlogItem.Priority)</td>
                 <td>@EnumHelpers.GetDescription(backlogItem.Severity)</td>

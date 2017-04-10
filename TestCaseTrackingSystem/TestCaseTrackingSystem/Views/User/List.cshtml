@@ -40,8 +40,10 @@
                 <th>Имя</th>
                 <th>Фамилия</th>
                 <th>Дата создания</th>
-                <th>Дата последнего входа</th>
-                <th></th>
+                @if (!ViewBag.DisableAdd)
+                {
+                    <th class="edit-delete-buttons-column"></th>
+                }
             </tr>
         </thead>        
         @foreach (var user in Model)
@@ -66,13 +68,15 @@
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
                 <td>@user.CreatedDate</td>
-                <td>@user.LastLogin</td>
-                <td>
-                    @if (!ViewBag.DisableAdd && !string.Equals(user.Login, "admin", StringComparison.OrdinalIgnoreCase))
-                    {
-                        @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("User", "Пользователь", user.ID))
-                    }
-                </td>
+                @if (!ViewBag.DisableAdd)
+                {
+                    <td>
+                        @if (!string.Equals(user.Login, "admin", StringComparison.OrdinalIgnoreCase))
+                        {
+                            @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("User", "Пользователь", user.ID))
+                        }
+                    </td>
+                }
             </tr>
         }
     </table>

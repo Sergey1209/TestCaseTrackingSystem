@@ -34,13 +34,15 @@
             <tr>
                 <th></th>
                 <th>Название</th>
-                <th>Описание</th>
                 <th>Метка</th>
                 <th>Создан Пользователем</th>
                 <th>Дата Создания</th>
                 <th>Ответственное лицо</th>
                 <th>Статус</th>
-                <th></th>
+                @if (!ViewBag.DisableAdd)
+                {
+                    <th class="edit-delete-buttons-column"></th>
+                }
             </tr>
         </thead>        
         @foreach (var testCase in Model)
@@ -48,18 +50,17 @@
             <tr onclick="location.href='@Url.Action("Edit", new { id = testCase.ID })'">
                 <td>@testCase.ID</td>
                 <td>@testCase.Title</td>
-                <td>@testCase.Description</td>
                 <td>@testCase.Tag</td>
                 <td>@testCase.CreatedBy</td>
                 <td>@testCase.DateCreated</td>
                 <td>@testCase.AssignedTo</td>
                 <td>@EnumHelpers.GetDescription(testCase.Status)</td>
-                <td>
-                    @if (!ViewBag.DisableAdd)
-                    {
+                @if (!ViewBag.DisableAdd)
+                {
+                    <td>
                         @Html.Partial("_editDeleteSection", new EditDeleteSectionModel("TestCase", "Тест Кейс", testCase.ID))
-                    }
-                </td>
+                    </td>
+                }
             </tr>
         }
     </table>

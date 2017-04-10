@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TestCaseStorage.Models.Chart
+﻿namespace TestCaseStorage.Models.Chart
 {
     public class ChartModel
     {
@@ -9,5 +7,6 @@ namespace TestCaseStorage.Models.Chart
         public ChartType Type { get; set; }
         public string Labels { get; set; }
         public string Values { get; set; }
+        public string ChartColor { get; set; }
     }
 }

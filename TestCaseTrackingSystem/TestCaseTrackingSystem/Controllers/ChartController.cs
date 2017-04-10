@@ -30,13 +30,14 @@ namespace TestCaseStorage.Controllers
                 Guid = "chart",
                 Type = ChartType.Bar,
                 Labels = string.Join(",", TestCaseService.GetTestersStatistics().Select(t => string.Format("'{0}'", t.TesterName))),
-                Values = string.Join(",", TestCaseService.GetTestersStatistics().Select(t => GetStatusValue(status, t)))
+                Values = string.Join(",", TestCaseService.GetTestersStatistics().Select(t => GetStatusValue(status, t))),
+                ChartColor = GetStatusColor(status)
             };
 
             return PartialView("_chart", chartModel);
         }
 
-        private string GetStatusValue(TestCaseStatus status, TestersStatisticsDto test)
+        private static string GetStatusValue(TestCaseStatus status, TestersStatisticsDto test)
         {
             switch (status)
             {
@@ -51,7 +52,7 @@ namespace TestCaseStorage.Controllers
             }
         }
 
-        private string GetStatusYLabel(TestCaseStatus status)
+        private static string GetStatusYLabel(TestCaseStatus status)
         {
             switch (status)
             {
@@ -63,6 +64,21 @@ namespace TestCaseStorage.Controllers
                     return "Тестов пройдено";
                 default:
                     return "Тестов не начато";
+            }
+        }
+
+        private static string GetStatusColor(TestCaseStatus status)
+        {
+            switch (status)
+            {
+                case TestCaseStatus.Failed:
+                    return ConsoleColor.Red.ToString();
+                case TestCaseStatus.InProgress:
+                    return ConsoleColor.Yellow.ToString();
+                case TestCaseStatus.Pased:
+                    return ConsoleColor.Green.ToString();
+                default:
+                    return ConsoleColor.White.ToString();
             }
         }
     }
