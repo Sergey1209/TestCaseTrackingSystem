@@ -30,7 +30,7 @@ namespace DataAccess.Initializers
         protected override void Seed(TCTSDataContext context)
         {
             base.Seed(context);
-
+            //sdfgsdfg
             EntityInitializers.ForEach(t => t.InitializeData(context));
         }
 
