@@ -24,6 +24,9 @@ namespace DataAccess.Initializers
                 Locked = false
             } 
         };
+
+
+        //fghdfghdfghdfgh
         
         public override void InitializeModel(DbModelBuilder modelBuilder)
         {
